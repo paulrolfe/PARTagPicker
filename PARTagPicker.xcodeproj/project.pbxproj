@@ -10,10 +10,20 @@
 		1CF87EEF1B5EED0E0007165E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF87EEE1B5EED0E0007165E /* main.m */; };
 		1CF87EF21B5EED0E0007165E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF87EF11B5EED0E0007165E /* AppDelegate.m */; };
 		1CF87EF51B5EED0E0007165E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF87EF41B5EED0E0007165E /* ViewController.m */; };
-		1CF87EF81B5EED0E0007165E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1CF87EF61B5EED0E0007165E /* Main.storyboard */; };
 		1CF87EFA1B5EED0E0007165E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CF87EF91B5EED0E0007165E /* Images.xcassets */; };
 		1CF87EFD1B5EED0E0007165E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CF87EFB1B5EED0E0007165E /* LaunchScreen.xib */; };
 		1CF87F091B5EED0E0007165E /* PARTagPickerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF87F081B5EED0E0007165E /* PARTagPickerTests.m */; };
+		1CF87F1B1B5EED9C0007165E /* PARTagPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF87F131B5EED9C0007165E /* PARTagPickerViewController.m */; };
+		1CF87F1C1B5EED9C0007165E /* PARTagPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CF87F141B5EED9C0007165E /* PARTagPickerViewController.xib */; };
+		1CF87F1D1B5EED9C0007165E /* PARTagCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF87F161B5EED9C0007165E /* PARTagCollectionViewCell.m */; };
+		1CF87F1E1B5EED9C0007165E /* PARTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CF87F171B5EED9C0007165E /* PARTagCollectionViewCell.xib */; };
+		1CF87F1F1B5EED9C0007165E /* PARTextFieldCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF87F191B5EED9C0007165E /* PARTextFieldCollectionViewCell.m */; };
+		1CF87F201B5EED9C0007165E /* PARTextFieldCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CF87F1A1B5EED9C0007165E /* PARTextFieldCollectionViewCell.xib */; };
+		1CF87F231B5EEDEA0007165E /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CF87F221B5EEDEA0007165E /* ViewController.xib */; };
+		1CF87F261B5EEE5D0007165E /* PARBackspaceTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF87F251B5EEE5D0007165E /* PARBackspaceTextField.m */; };
+		1CF87F291B5EF0700007165E /* NSString+PARStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF87F281B5EF0700007165E /* NSString+PARStrings.m */; };
+		1CF87F2D1B5EF8440007165E /* PARTagColorReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF87F2C1B5EF8440007165E /* PARTagColorReference.m */; };
+		1CF87F301B5FBA290007165E /* UIView+NibInitable.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF87F2F1B5FBA290007165E /* UIView+NibInitable.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,12 +44,29 @@
 		1CF87EF11B5EED0E0007165E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1CF87EF31B5EED0E0007165E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		1CF87EF41B5EED0E0007165E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		1CF87EF71B5EED0E0007165E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1CF87EF91B5EED0E0007165E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1CF87EFC1B5EED0E0007165E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		1CF87F021B5EED0E0007165E /* PARTagPickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PARTagPickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CF87F071B5EED0E0007165E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1CF87F081B5EED0E0007165E /* PARTagPickerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PARTagPickerTests.m; sourceTree = "<group>"; };
+		1CF87F121B5EED9C0007165E /* PARTagPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARTagPickerViewController.h; sourceTree = "<group>"; };
+		1CF87F131B5EED9C0007165E /* PARTagPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PARTagPickerViewController.m; sourceTree = "<group>"; };
+		1CF87F141B5EED9C0007165E /* PARTagPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PARTagPickerViewController.xib; sourceTree = "<group>"; };
+		1CF87F151B5EED9C0007165E /* PARTagCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARTagCollectionViewCell.h; sourceTree = "<group>"; };
+		1CF87F161B5EED9C0007165E /* PARTagCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PARTagCollectionViewCell.m; sourceTree = "<group>"; };
+		1CF87F171B5EED9C0007165E /* PARTagCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PARTagCollectionViewCell.xib; sourceTree = "<group>"; };
+		1CF87F181B5EED9C0007165E /* PARTextFieldCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARTextFieldCollectionViewCell.h; sourceTree = "<group>"; };
+		1CF87F191B5EED9C0007165E /* PARTextFieldCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PARTextFieldCollectionViewCell.m; sourceTree = "<group>"; };
+		1CF87F1A1B5EED9C0007165E /* PARTextFieldCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PARTextFieldCollectionViewCell.xib; sourceTree = "<group>"; };
+		1CF87F221B5EEDEA0007165E /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ViewController.xib; path = ../ViewController.xib; sourceTree = "<group>"; };
+		1CF87F241B5EEE5D0007165E /* PARBackspaceTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARBackspaceTextField.h; sourceTree = "<group>"; };
+		1CF87F251B5EEE5D0007165E /* PARBackspaceTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PARBackspaceTextField.m; sourceTree = "<group>"; };
+		1CF87F271B5EF0700007165E /* NSString+PARStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PARStrings.h"; sourceTree = "<group>"; };
+		1CF87F281B5EF0700007165E /* NSString+PARStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PARStrings.m"; sourceTree = "<group>"; };
+		1CF87F2B1B5EF8440007165E /* PARTagColorReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARTagColorReference.h; sourceTree = SOURCE_ROOT; };
+		1CF87F2C1B5EF8440007165E /* PARTagColorReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PARTagColorReference.m; sourceTree = SOURCE_ROOT; };
+		1CF87F2E1B5FBA290007165E /* UIView+NibInitable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NibInitable.h"; sourceTree = "<group>"; };
+		1CF87F2F1B5FBA290007165E /* UIView+NibInitable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NibInitable.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,11 +108,12 @@
 		1CF87EEB1B5EED0E0007165E /* PARTagPicker */ = {
 			isa = PBXGroup;
 			children = (
+				1CF87F211B5EEDA30007165E /* PARTagPicker */,
 				1CF87EF01B5EED0E0007165E /* AppDelegate.h */,
 				1CF87EF11B5EED0E0007165E /* AppDelegate.m */,
 				1CF87EF31B5EED0E0007165E /* ViewController.h */,
 				1CF87EF41B5EED0E0007165E /* ViewController.m */,
-				1CF87EF61B5EED0E0007165E /* Main.storyboard */,
+				1CF87F221B5EEDEA0007165E /* ViewController.xib */,
 				1CF87EF91B5EED0E0007165E /* Images.xcassets */,
 				1CF87EFB1B5EED0E0007165E /* LaunchScreen.xib */,
 				1CF87EEC1B5EED0E0007165E /* Supporting Files */,
@@ -117,6 +145,54 @@
 				1CF87F071B5EED0E0007165E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1CF87F211B5EEDA30007165E /* PARTagPicker */ = {
+			isa = PBXGroup;
+			children = (
+				1CF87F121B5EED9C0007165E /* PARTagPickerViewController.h */,
+				1CF87F131B5EED9C0007165E /* PARTagPickerViewController.m */,
+				1CF87F141B5EED9C0007165E /* PARTagPickerViewController.xib */,
+				1CF87F321B5FBFF90007165E /* Views */,
+				1CF87F331B5FC0050007165E /* Custom Objects */,
+				1CF87F311B5FBFE20007165E /* Categories */,
+			);
+			name = PARTagPicker;
+			sourceTree = "<group>";
+		};
+		1CF87F311B5FBFE20007165E /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				1CF87F271B5EF0700007165E /* NSString+PARStrings.h */,
+				1CF87F281B5EF0700007165E /* NSString+PARStrings.m */,
+				1CF87F2E1B5FBA290007165E /* UIView+NibInitable.h */,
+				1CF87F2F1B5FBA290007165E /* UIView+NibInitable.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		1CF87F321B5FBFF90007165E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1CF87F241B5EEE5D0007165E /* PARBackspaceTextField.h */,
+				1CF87F251B5EEE5D0007165E /* PARBackspaceTextField.m */,
+				1CF87F151B5EED9C0007165E /* PARTagCollectionViewCell.h */,
+				1CF87F161B5EED9C0007165E /* PARTagCollectionViewCell.m */,
+				1CF87F171B5EED9C0007165E /* PARTagCollectionViewCell.xib */,
+				1CF87F181B5EED9C0007165E /* PARTextFieldCollectionViewCell.h */,
+				1CF87F191B5EED9C0007165E /* PARTextFieldCollectionViewCell.m */,
+				1CF87F1A1B5EED9C0007165E /* PARTextFieldCollectionViewCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		1CF87F331B5FC0050007165E /* Custom Objects */ = {
+			isa = PBXGroup;
+			children = (
+				1CF87F2B1B5EF8440007165E /* PARTagColorReference.h */,
+				1CF87F2C1B5EF8440007165E /* PARTagColorReference.m */,
+			);
+			name = "Custom Objects";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,9 +275,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CF87EF81B5EED0E0007165E /* Main.storyboard in Resources */,
+				1CF87F1E1B5EED9C0007165E /* PARTagCollectionViewCell.xib in Resources */,
+				1CF87F201B5EED9C0007165E /* PARTextFieldCollectionViewCell.xib in Resources */,
 				1CF87EFD1B5EED0E0007165E /* LaunchScreen.xib in Resources */,
 				1CF87EFA1B5EED0E0007165E /* Images.xcassets in Resources */,
+				1CF87F231B5EEDEA0007165E /* ViewController.xib in Resources */,
+				1CF87F1C1B5EED9C0007165E /* PARTagPickerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,9 +298,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CF87F301B5FBA290007165E /* UIView+NibInitable.m in Sources */,
+				1CF87F291B5EF0700007165E /* NSString+PARStrings.m in Sources */,
+				1CF87F1F1B5EED9C0007165E /* PARTextFieldCollectionViewCell.m in Sources */,
+				1CF87F2D1B5EF8440007165E /* PARTagColorReference.m in Sources */,
+				1CF87F261B5EEE5D0007165E /* PARBackspaceTextField.m in Sources */,
 				1CF87EF51B5EED0E0007165E /* ViewController.m in Sources */,
 				1CF87EF21B5EED0E0007165E /* AppDelegate.m in Sources */,
 				1CF87EEF1B5EED0E0007165E /* main.m in Sources */,
+				1CF87F1D1B5EED9C0007165E /* PARTagCollectionViewCell.m in Sources */,
+				1CF87F1B1B5EED9C0007165E /* PARTagPickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,14 +330,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1CF87EF61B5EED0E0007165E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1CF87EF71B5EED0E0007165E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1CF87EFB1B5EED0E0007165E /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
