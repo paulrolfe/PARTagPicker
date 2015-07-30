@@ -1,15 +1,18 @@
 # PARTagPicker
 
-[![CI Status](http://img.shields.io/travis/Paul Rolfe/PARTagPicker.svg?style=flat)](https://travis-ci.org/Paul Rolfe/PARTagPicker)
-[![Version](https://img.shields.io/cocoapods/v/PARTagPicker.svg?style=flat)](http://cocoapods.org/pods/PARTagPicker)
-[![License](https://img.shields.io/cocoapods/l/PARTagPicker.svg?style=flat)](http://cocoapods.org/pods/PARTagPicker)
-[![Platform](https://img.shields.io/cocoapods/p/PARTagPicker.svg?style=flat)](http://cocoapods.org/pods/PARTagPicker)
+This pod provides a view controller for choosing and creating tags in the style of wordpress or tumblr. This tag picker was originally used in the [Intrepid Pursuits](http://intrepid.io) app, Slate.
 
-## Usage
+## DEMO
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+As used in Slate:
 
-## Requirements
+![DEMO IN SLATE](https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record1.gif)
+![DEMO IN SLATE](https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record4.gif)
+
+From example project:
+
+[![DEMO IN EXAMPLE](https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record2.gif)]
+[![DEMO IN EXAMPLE](https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record3.gif)]
 
 ## Installation
 
@@ -17,12 +20,32 @@ PARTagPicker is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "PARTagPicker"
+pod 'PARTagPicker'
 ```
+
+## Usage
+
+To run the example project, clone the repo, and run `pod install` from the PRTagPicker directory first.
+
+The basic setup is to create an instance of `PARTagPickerViewController`, add it's view, and then add the controller as a child view controller.
+
+The tags are passed in as `NSString` objects in an array. Anytime you change the `allTags` array, any existing `chosenTags` are updated using references to the new strings if they contain a match in the updated array. Otherwise they continue to point the old strings.
+
+## Options
+* You can customize colors using a PARTagColorReference object.
+* You can allow new tags with `allowsNewTags` boolean property on the controller.
+* You can set the `chosenTags` directly.
+* Delegate methods for when the chosenTags change and the tag picker changes size.
+* `- (void)tagPicker:(PARTagPickerViewController *)tagPicker visibilityChangedToState:(PARTagPickerVisibilityState)state `
+* `- (void)chosenTagsWereUpdatedInTagPicker:(PARTagPickerViewController *)tagPicker`
+
+## Notes
+
+This is still a work in progress. If you have suggestions or run into issues, please create an issue on git or tweet me [@ThePaulRolfe](http://twitter.com/thepaulrolfe).
 
 ## Author
 
-Paul Rolfe, paul.a.rolfe@gmail.com
+Paul Rolfe, paul.a.rolfe@gmail.com, [@ThePaulRolfe](http://twitter.com/thepaulrolfe)
 
 ## License
 
