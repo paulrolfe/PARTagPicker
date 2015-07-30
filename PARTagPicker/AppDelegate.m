@@ -22,7 +22,6 @@
     //UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:home];
     self.window.rootViewController = home;
     [self.window makeKeyAndVisible];
-
     
     return YES;
 }

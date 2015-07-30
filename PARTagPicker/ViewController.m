@@ -35,6 +35,7 @@
 
 - (void)addTagPickerToView {
     self.tagPicker = [[PARTagPickerViewController alloc] init];
+    self.tagPicker.view.backgroundColor = [UIColor darkGrayColor];
     self.tagPicker.view.frame = CGRectMake(0, 20, CGRectGetWidth(self.view.bounds), 78); //78 is the fully expanded height.
     self.tagPicker.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.tagPicker.allTags = self.allTags;
