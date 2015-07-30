@@ -20,11 +20,13 @@ Pod::Spec.new do |s|
   s.summary      = "This pod provides a view controller for choosing and creating tags in the style of wordpress or tumblr."
 
   s.description  = <<-DESC
-                   ## Origins
-                   This pod was originally created for use in an [Intrepid Pursuits](http://intrepid.io) project called Slate.
+  # PARTagPicker
+
+  This pod provides a view controller for choosing and creating tags in the style of wordpress or tumblr. This tag picker was originally used in the [Intrepid Pursuits](http://intrepid.io) app, Slate.
+
                    DESC
 
-  s.homepage     = "http://paulrolfe.com/cocoapods"
+  s.homepage     = "https://github.com/paulrolfe/PARTagPicker"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
