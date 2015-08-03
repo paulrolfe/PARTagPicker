@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "PARTagPicker"
-  s.version      = "0.0.2"
+  s.version      = "0.0.3"
   s.summary      = "This pod provides a view controller for choosing and creating tags in the style of wordpress or tumblr."
 
   s.description  = <<-DESC
