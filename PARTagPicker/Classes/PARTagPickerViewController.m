@@ -214,6 +214,9 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     if ([self.delegate respondsToSelector:@selector(chosenTagsWereUpdatedInTagPicker:)]) {
         [self.delegate chosenTagsWereUpdatedInTagPicker:self];
     }
+    if (self.chosenTags.count == 0) {
+        [self addPlaceholderTextToCellTextField];
+    }
 }
 
 - (void)addChosenTagFromIndexPath:(NSIndexPath *)indexPath {
@@ -280,7 +283,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     } else {
         PARTagCollectionViewCell *sizingCell = nil;
         if (!sizingCell) {
-            sizingCell = [[PARTagCollectionViewCell alloc] initWithNibNamed:nil]; //TODO: Get nibinitable back.
+            sizingCell = [[PARTagCollectionViewCell alloc] initWithNibNamed:nil];
         }
         NSString *tag;
         if (collectionView == self.availableTagCollectionView) {
@@ -296,15 +299,12 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (collectionView == self.chosenTagCollectionView){
-        //if it's the chose tags AND we are editing tags
-        //then select or deselect the cell appropriately
-        NSIndexPath *selectedPath = (NSIndexPath *)[self.chosenTagCollectionView indexPathsForSelectedItems].firstObject;
-        if (selectedPath == indexPath) {
-            [self.chosenTagCollectionView deselectItemAtIndexPath:selectedPath animated:YES];
-            return NO;
+        //if it's the chosen tags AND we are editing tags remove it.
+        //else just expand to editing mode
+        if (indexPath.row <= self.chosenTags.count && self.visibilityState == PARTagPickerVisibilityStateTopAndBottom) {
+            [self removeChosenTagFromIndexPath:indexPath];
         } else {
-            [self setVisibilityState:PARTagPickerVisibilityStateTopAndBottom];
-            return YES;
+            self.visibilityState = PARTagPickerVisibilityStateTopAndBottom;
         }
     } else if (collectionView == self.availableTagCollectionView){
         //if it's the available tags
