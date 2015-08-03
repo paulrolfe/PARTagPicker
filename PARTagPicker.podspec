@@ -76,7 +76,7 @@ Pod::Spec.new do |s|
                    DESC
 
   s.homepage     = "https://github.com/paulrolfe/PARTagPicker"
-  s.screenshots  = "https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record1.gif", "https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record2.gif", "https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record3.gif", 'https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record4.gif"
+  s.screenshots  = "https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record1.gif", "https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record2.gif", "https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record3.gif", "https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record4.gif"
 
 
   # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
