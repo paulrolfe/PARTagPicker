@@ -29,15 +29,16 @@
 
 - (void)initDummyData {
     //Data for demo project
-    self.allTags = @[@"one fish", @"two fish", @"red fish", @"blue fish"];
+    self.allTags = @[@"one fish", @"two fish", @"red fish", @"blue fish", @"the cat in the hat", @"Seuss"];
     self.preChosenTags = @[@"in a box", @"with a fox", @"thing 1", @"thing 2"];
 }
 
 - (void)addTagPickerToView {
     self.tagPicker = [[PARTagPickerViewController alloc] init];
     self.tagPicker.view.backgroundColor = [UIColor darkGrayColor];
-    self.tagPicker.view.frame = CGRectMake(0, 20, CGRectGetWidth(self.view.bounds), 78); //78 is the fully expanded height.
+    self.tagPicker.view.frame = CGRectMake(0, 20, CGRectGetWidth(self.view.bounds), COLLECTION_VIEW_HEIGHT); //78 is the fully expanded height.
     self.tagPicker.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.tagPicker.delegate = self;
     self.tagPicker.allTags = self.allTags;
     
     //optionally allow new tags to be made
@@ -48,6 +49,9 @@
     
     //optionally use custom colors using PARTagColorReference
     //[self useCustomColors];
+    
+    //optionally set the font for all the cells
+    //self.tagPicker.font = [UIFont fontWithName:@"Menlo-Regular" size:14];
     
     [self addChildViewController:self.tagPicker];
     [self.view addSubview:self.tagPicker.view];
@@ -75,6 +79,18 @@
 
 - (void)tagPicker:(PARTagPickerViewController *)tagPicker visibilityChangedToState:(PARTagPickerVisibilityState)state {
     //you can adjust this view controller's view to change with the tagPicker's size change, if needed.
+    CGFloat newHeight = 0;
+    if (state == PARTagPickerVisibilityStateTopAndBottom) {
+        newHeight = 2 * COLLECTION_VIEW_HEIGHT;
+    } else if (state == PARTagPickerVisibilityStateTopOnly) {
+        newHeight = COLLECTION_VIEW_HEIGHT;
+    }
+    CGRect frame = self.tagPicker.view.frame;
+    frame.size.height = newHeight;
+    
+    [UIView animateWithDuration:.5 animations:^{
+        self.tagPicker.view.frame = frame;
+    }];
 }
 
 - (void)chosenTagsWereUpdatedInTagPicker:(PARTagPickerViewController *)tagPicker {

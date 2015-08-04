@@ -14,8 +14,8 @@
 #import "PARTagColorReference.h"
 #import "UIView+NibInitable.h"
 
+CGFloat const COLLECTION_VIEW_HEIGHT = 39.0;
 static CGFloat const TAGCOLLECTION_CELL_HEIGHT = 27.0;
-static CGFloat const COLLECTION_VIEW_HEIGHT = 39.0;
 static CGFloat const TAG_TEXTFIELD_MAXWIDTH = 150;
 static NSString * const PARTagCollectionViewCellIdentifier = @"PARTagCollectionViewCellIdentifier";
 static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFieldCollectionViewCellIdentifier";
@@ -41,6 +41,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     if (self) {
         self.tagColorRef = [[PARTagColorReference alloc] initWithDefaultColors];
         self.textfieldPlaceholderTextColor = [UIColor grayColor];
+        self.textfieldRegularTextColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -56,12 +57,15 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     self.visibilityState = PARTagPickerVisibilityStateTopOnly;
 }
 
+#pragma mark - Forced Updates
+
 - (void)becomeFirstResponder {
     [self.cellTextField becomeFirstResponder];
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"touch");
+- (void)reloadCollectionViews {
+    [self.availableTagCollectionView reloadData];
+    [self.chosenTagCollectionView reloadData];
 }
 
 #pragma mark - Setters
@@ -208,6 +212,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     NSString *selectedTag = [self.chosenTags objectAtIndex:indexPath.row];
     if ([self.allTags containsObject:selectedTag]) {
         [self.availableTags addObject:selectedTag];
+        [self.availableTagCollectionView reloadData];
     }
     [self.chosenTags removeObject:selectedTag];
     [self.chosenTagCollectionView deleteItemsAtIndexPaths:@[indexPath]];
@@ -253,6 +258,13 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
         textFieldCell.delegate = self;
         textFieldCell.tagTextField.backspaceDelegate = self;
         textFieldCell.tagTextField.text = @"";
+        textFieldCell.tagTextField.textColor = self.textfieldRegularTextColor;
+        if (self.textfieldCursorColor) {
+            textFieldCell.tagTextField.tintColor = self.textfieldCursorColor;
+        }
+        if (self.font) {
+            textFieldCell.tagTextField.font = self.font;
+        }
         if (self.chosenTags.count == 0) {
             [self addPlaceholderTextToCellTextField];
         } else {
@@ -271,6 +283,9 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
             [cell showAsChosen:YES];
         }
         cell.tagLabel.text = tag;
+        if (self.font) {
+            cell.tagLabel.font = self.font;
+        }
         cell.delegate = self;
         cell.phantomTextField.backspaceDelegate = self;
         return cell;
@@ -292,6 +307,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
             tag = self.chosenTags[indexPath.row];
         }
         sizingCell.tagLabel.text = tag;
+        sizingCell.tagLabel.font = self.font;
         CGSize size = [sizingCell systemLayoutSizeFittingSize:CGSizeMake(collectionView.contentSize.width, TAGCOLLECTION_CELL_HEIGHT) withHorizontalFittingPriority:UILayoutPriorityDefaultLow verticalFittingPriority:UILayoutPriorityDefaultHigh];
         return size;
     }
