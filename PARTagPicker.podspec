@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "PARTagPicker"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "This pod provides a view controller for choosing and creating tags in the style of wordpress or tumblr."
 
   s.description  = <<-DESC
@@ -49,9 +49,11 @@ Pod::Spec.new do |s|
 
   To run the example project, clone the repo, and run `pod install` from the PRTagPicker directory first.
 
+  Include `#import <PARTagPicker/PARTagPickerViewController.h>`.
+
   The basic setup is to create an instance of `PARTagPickerViewController`, add it's view, and then add the controller as a child view controller.
 
-  The tags are passed in as `NSString` objects in an array. Anytime you change the `allTags` array, any existing `chosenTags` are updated using references to the new strings if they contain a match in the updated array. Otherwise they continue to point the old strings.
+  The tags are passed in as `NSString` objects in an array. Anytime you change the `allTags` array, any existing `chosenTags` are updated to use references to the new strings if they contain a match in the updated array. Otherwise they continue to point to the old strings.
 
   ## Options
   * You can customize colors using a PARTagColorReference object.
@@ -66,6 +68,7 @@ Pod::Spec.new do |s|
   This is still a work in progress. If you have suggestions or run into issues, please create an issue on git or tweet me [@ThePaulRolfe](http://twitter.com/thepaulrolfe).
 
   ## Updates
+  * v1.0.1 - Including `.xib`s in the pod now. Oops!
   * v1.0.0 - Added documentation and fixed bug with deselecting chosenTags. Added ability to use custom fonts in the tag cells.
   * v0.0.5 - Added expected functionality of chosenTags being removed when pressed.
 
@@ -122,7 +125,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/paulrolfe/PARTagPicker.git", :tag => "1.0.0" }
+  s.source       = { :git => "https://github.com/paulrolfe/PARTagPicker.git", :tag => "1.0.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -133,7 +136,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "PARTagPicker/Classes/*.{h,m}"
+  s.source_files  = "PARTagPicker/Classes/*.{h,m,xib}"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
