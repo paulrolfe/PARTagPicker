@@ -46,7 +46,7 @@ The tags are passed in as `NSString` objects in an array. Anytime you change the
 This is still a work in progress. If you have suggestions or run into issues, please create an issue on git or tweet me [@ThePaulRolfe](http://twitter.com/thepaulrolfe).
 
 ## Updates
-* v1.0.1 - Including `.xib`s in the pod now. Oops!
+* v1.0.2 - Including `.xib`s in the pod now. Oops!
 * v1.0.0 - Added documentation and fixed bug with deselecting chosenTags. Added ability to use custom fonts in the tag cells.
 * v0.0.5 - Added expected functionality of chosenTags being removed when pressed.
 
