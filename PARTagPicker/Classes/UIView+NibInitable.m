@@ -1,4 +1,5 @@
 #import "UIView+NibInitable.h"
+#import "PARTagPickerViewController.h"
 
 @implementation UIView (NibInitable)
 
@@ -9,7 +10,11 @@
     
     self = [self init]; // FIXME: Added this to appease the compiler in Xcode 7... does nothing.
     
-    NSArray *viewsInNib = [[NSBundle mainBundle] loadNibNamed:nibNameOrNil
+    // To make this work with modules.
+    NSString *bundlePath = [[NSBundle bundleForClass:[PARTagPickerViewController class]] pathForResource:@"PARTagPicker" ofType:@"bundle"];
+    NSBundle *assetBundle = [NSBundle bundleWithPath:bundlePath];
+    
+    NSArray *viewsInNib = [assetBundle loadNibNamed:nibNameOrNil
                                                         owner:nil
                                                       options:nil];
     for (id view in viewsInNib) {

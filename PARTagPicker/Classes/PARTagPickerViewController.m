@@ -37,7 +37,9 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 @implementation PARTagPickerViewController
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    NSString *bundlePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"PARTagPicker" ofType:@"bundle"];
+    NSBundle *assetBundle = [NSBundle bundleWithPath:bundlePath];
+    self = [super initWithNibName:nibNameOrNil bundle:assetBundle];
     if (self) {
         self.tagColorRef = [[PARTagColorReference alloc] initWithDefaultColors];
         self.textfieldPlaceholderTextColor = [UIColor grayColor];
@@ -124,7 +126,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
             }
         }
         [self.delegate tagPicker:self visibilityChangedToState:visibilityState];
-
+        
     }
 }
 
@@ -155,9 +157,11 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 #pragma mark - Appearance and constraints
 
 - (void)setupCollectionViews {
-    [self.chosenTagCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([PARTagCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:PARTagCollectionViewCellIdentifier];
-    [self.chosenTagCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([PARTextFieldCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:PARTextFieldCollectionViewCellIdentifier];
-    [self.availableTagCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([PARTagCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:PARTagCollectionViewCellIdentifier];
+    NSString *bundlePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"PARTagPicker" ofType:@"bundle"];
+    NSBundle *assetBundle = [NSBundle bundleWithPath:bundlePath];
+    [self.chosenTagCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([PARTagCollectionViewCell class]) bundle:assetBundle] forCellWithReuseIdentifier:PARTagCollectionViewCellIdentifier];
+    [self.chosenTagCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([PARTextFieldCollectionViewCell class]) bundle:assetBundle] forCellWithReuseIdentifier:PARTextFieldCollectionViewCellIdentifier];
+    [self.availableTagCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([PARTagCollectionViewCell class]) bundle:assetBundle] forCellWithReuseIdentifier:PARTagCollectionViewCellIdentifier];
 }
 
 - (void)animateBottomRowCellToTopFromIndexPath:(NSIndexPath *)indexPath {
