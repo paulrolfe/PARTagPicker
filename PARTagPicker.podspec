@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "PARTagPicker"
-  s.version      = "1.0.2"
+  s.version      = "1.0.3"
   s.summary      = "This pod provides a view controller for choosing and creating tags in the style of wordpress or tumblr."
 
   s.description  = <<-DESC
@@ -68,10 +68,10 @@ Pod::Spec.new do |s|
   This is still a work in progress. If you have suggestions or run into issues, please create an issue on git or tweet me [@ThePaulRolfe](http://twitter.com/thepaulrolfe).
 
   ## Updates
+  * v1.0.3 - Making safe from some unexpected nil values.
   * v1.0.2 - Including `.xib`s in the pod now. Oops!
   * v1.0.0 - Added documentation and fixed bug with deselecting chosenTags. Added ability to use custom fonts in the tag cells.
   * v0.0.5 - Added expected functionality of chosenTags being removed when pressed.
-
 
   ## Author
 
@@ -125,7 +125,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/paulrolfe/PARTagPicker.git", :tag => "1.0.2" }
+  s.source       = { :git => "https://github.com/paulrolfe/PARTagPicker.git", :tag => "1.0.3" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

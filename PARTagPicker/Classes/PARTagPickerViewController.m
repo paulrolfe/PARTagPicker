@@ -205,7 +205,11 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 }
 
 - (void)addPlaceholderTextToCellTextField {
-    self.cellTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Tags" attributes:@{NSForegroundColorAttributeName: self.textfieldPlaceholderTextColor}];
+    UIColor *textColor = [UIColor colorWithWhite:0.7 alpha:0.7];
+    if (self.textfieldPlaceholderTextColor) {
+        textColor = self.textfieldPlaceholderTextColor;
+    }
+    self.cellTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Tags" attributes:@{NSForegroundColorAttributeName: textColor}];
 }
 
 - (void)removeChosenTagFromIndexPath:(NSIndexPath *)indexPath {
