@@ -53,6 +53,12 @@
     //optionally set the font for all the cells
     //self.tagPicker.font = [UIFont fontWithName:@"Menlo-Regular" size:14];
     
+    //optionally set default placeholder text
+    //self.tagPicker.placeholderText = @"Insert Tag Here";
+    
+    //optionally disable the tap to remove tags
+    //self.tagPicker.tapToEraseTags = NO;
+    
     [self addChildViewController:self.tagPicker];
     [self.view addSubview:self.tagPicker.view];
 }

@@ -90,6 +90,15 @@ typedef NS_ENUM(NSUInteger, PARTagPickerVisibilityState) {
  */
 @property (nonatomic, strong) PARTagColorReference *tagColorRef;
 
+/**
+ *  The default text to have as placeholder text in each tag cell.
+ */
+@property (nonatomic, strong) NSString *placeholderText;
+
+/**
+ *  Defaults to YES. If set to NO, tapping a cell will just select it (not delete it).
+ */
+@property (nonatomic) BOOL tapToEraseTags;
 
 /**
  *  Opens the visibility state to TopAndBottom and puts the cursor as active in the textfield cell.
