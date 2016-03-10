@@ -42,7 +42,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     self = [super initWithNibName:nibNameOrNil bundle:assetBundle];
     if (self) {
         self.tapToEraseTags = YES;
-        self.placeholderText = @"Tags";
+        self.placeholderText = @"Add a tag";
         self.tagColorRef = [[PARTagColorReference alloc] initWithDefaultColors];
         self.textfieldPlaceholderTextColor = [UIColor grayColor];
         self.textfieldRegularTextColor = [UIColor whiteColor];

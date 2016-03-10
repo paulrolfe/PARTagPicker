@@ -91,7 +91,7 @@ typedef NS_ENUM(NSUInteger, PARTagPickerVisibilityState) {
 @property (nonatomic, strong) PARTagColorReference *tagColorRef;
 
 /**
- *  The default text to have as placeholder text in each tag cell.
+ *  The default text to have as placeholder text in each tag cell. Default value is @"Add a tag".
  */
 @property (nonatomic, strong) NSString *placeholderText;
 
