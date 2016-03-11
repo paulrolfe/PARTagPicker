@@ -161,9 +161,6 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 - (void)setupCollectionViews {
     NSString *bundlePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"PARTagPicker" ofType:@"bundle"];
     NSBundle *assetBundle = [NSBundle bundleWithPath:bundlePath];
-    if (!assetBundle) {
-        assetBundle = [NSBundle mainBundle];
-    }
     [self.chosenTagCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([PARTagCollectionViewCell class]) bundle:assetBundle] forCellWithReuseIdentifier:PARTagCollectionViewCellIdentifier];
     [self.chosenTagCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([PARTextFieldCollectionViewCell class]) bundle:assetBundle] forCellWithReuseIdentifier:PARTextFieldCollectionViewCellIdentifier];
     [self.availableTagCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([PARTagCollectionViewCell class]) bundle:assetBundle] forCellWithReuseIdentifier:PARTagCollectionViewCellIdentifier];
