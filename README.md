@@ -40,12 +40,16 @@ The tags are passed in as `NSString` objects in an array. Anytime you change the
 * Delegate methods for when the chosenTags change and the tag picker changes size.
 * `- (void)tagPicker:(PARTagPickerViewController *)tagPicker visibilityChangedToState:(PARTagPickerVisibilityState)state `
 * `- (void)chosenTagsWereUpdatedInTagPicker:(PARTagPickerViewController *)tagPicker`
+* `tapToEraseTags` Defaults to YES. If set to NO, tapping a cell will just select it (not delete it).
+* `placeholderText` - The default text to have as placeholder text in each tag cell. Default value is @"Add a tag".
 
 ## Notes
 
 This is still a work in progress. If you have suggestions or run into issues, please create an issue on git or tweet me [@ThePaulRolfe](http://twitter.com/thepaulrolfe).
 
 ## Updates
+* v1.1.0 - Added properties for `placeholderText` and `tapToEraseTags`.
+* v1.0.4 - Enabled for use in swift pods.
 * v1.0.2 - Including `.xib`s in the pod now. Oops!
 * v1.0.0 - Added documentation and fixed bug with deselecting chosenTags. Added ability to use custom fonts in the tag cells.
 * v0.0.5 - Added expected functionality of chosenTags being removed when pressed.
