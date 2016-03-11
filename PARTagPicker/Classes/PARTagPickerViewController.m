@@ -41,6 +41,8 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     NSBundle *assetBundle = [NSBundle bundleWithPath:bundlePath];
     self = [super initWithNibName:nibNameOrNil bundle:assetBundle];
     if (self) {
+        self.tapToEraseTags = YES;
+        self.placeholderText = @"Add a tag";
         self.tagColorRef = [[PARTagColorReference alloc] initWithDefaultColors];
         self.textfieldPlaceholderTextColor = [UIColor grayColor];
         self.textfieldRegularTextColor = [UIColor whiteColor];
@@ -213,7 +215,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     if (self.textfieldPlaceholderTextColor) {
         textColor = self.textfieldPlaceholderTextColor;
     }
-    self.cellTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Tags" attributes:@{NSForegroundColorAttributeName: textColor}];
+    self.cellTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholderText attributes:@{NSForegroundColorAttributeName: textColor}];
 }
 
 - (void)removeChosenTagFromIndexPath:(NSIndexPath *)indexPath {
@@ -273,11 +275,9 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
         if (self.font) {
             textFieldCell.tagTextField.font = self.font;
         }
-        if (self.chosenTags.count == 0) {
-            [self addPlaceholderTextToCellTextField];
-        } else {
-            textFieldCell.tagTextField.placeholder = @"";
-        }
+        
+        [self addPlaceholderTextToCellTextField];
+
         return textFieldCell;
     } else {
         PARTagCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PARTagCollectionViewCellIdentifier forIndexPath:indexPath];
@@ -321,12 +321,17 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     }
 }
 
+
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (collectionView == self.chosenTagCollectionView){
         //if it's the chosen tags AND we are editing tags remove it.
         //else just expand to editing mode
         if (indexPath.row <= self.chosenTags.count && self.visibilityState == PARTagPickerVisibilityStateTopAndBottom) {
-            [self removeChosenTagFromIndexPath:indexPath];
+            if (self.tapToEraseTags) {
+                [self removeChosenTagFromIndexPath:indexPath];
+            } else {
+                return YES;
+            }
         } else {
             self.visibilityState = PARTagPickerVisibilityStateTopAndBottom;
         }
@@ -335,7 +340,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
         //then add that tag to the chose tags and remove it from the available ones.
         self.searchString = nil;
         self.cellTextField.text = @"";
-        self.cellTextField.placeholder = @"";
+        self.cellTextField.placeholder = self.placeholderText;
         [self addChosenTagFromIndexPath:indexPath];
     }
     return NO;
@@ -359,7 +364,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
         NSString *tag = cell.tagTextField.text;
         self.searchString = nil;
         cell.tagTextField.text = @"";
-        cell.tagTextField.placeholder = @"";
+        cell.tagTextField.placeholder = self.placeholderText;
         
         if (self.allowsNewTags) {
             NSString *possibleMatch = [self tagSimilarToTag:tag];
@@ -440,7 +445,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
             if (self.chosenTags.count == 0) {
                 [self addPlaceholderTextToCellTextField];
             } else {
-                self.cellTextField.placeholder = @"";
+                self.cellTextField.placeholder = self.placeholderText;
             }
         }
     } else {

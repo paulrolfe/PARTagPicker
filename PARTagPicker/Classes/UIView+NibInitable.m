@@ -13,6 +13,9 @@
     // To make this work with modules.
     NSString *bundlePath = [[NSBundle bundleForClass:[PARTagPickerViewController class]] pathForResource:@"PARTagPicker" ofType:@"bundle"];
     NSBundle *assetBundle = [NSBundle bundleWithPath:bundlePath];
+    if (!assetBundle) {
+        assetBundle = [NSBundle mainBundle];
+    }
     
     NSArray *viewsInNib = [assetBundle loadNibNamed:nibNameOrNil
                                                         owner:nil
