@@ -139,6 +139,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 - (void)setTextfieldEnabled:(BOOL)textfieldEnabled {
     _textfieldEnabled = textfieldEnabled;
     self.cellTextField.userInteractionEnabled = textfieldEnabled;
+    [self reloadCollectionViews]; // In order to fix the phontom text fields.
 }
 
 #pragma mark - Tag Filtering
@@ -305,6 +306,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
         }
         cell.delegate = self;
         cell.phantomTextField.backspaceDelegate = self;
+        cell.phantomTextField.userInteractionEnabled = self.textfieldEnabled;
         return cell;
     }
 }
