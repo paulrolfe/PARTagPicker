@@ -42,6 +42,8 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     self = [super initWithNibName:nibNameOrNil bundle:assetBundle];
     if (self) {
         self.tapToEraseTags = YES;
+        self.textfieldEnabled = YES;
+        self.shouldAutomaticallyChangeVisibilityState = YES;
         self.placeholderText = @"Add a tag";
         self.tagColorRef = [[PARTagColorReference alloc] initWithDefaultColors];
         self.textfieldPlaceholderTextColor = [UIColor grayColor];
@@ -64,7 +66,9 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 #pragma mark - Forced Updates
 
 - (void)becomeFirstResponder {
-    [self.cellTextField becomeFirstResponder];
+    if (self.textfieldEnabled) {
+        [self.cellTextField becomeFirstResponder];
+    }
 }
 
 - (void)reloadCollectionViews {
@@ -130,6 +134,11 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
         [self.delegate tagPicker:self visibilityChangedToState:visibilityState];
         
     }
+}
+
+- (void)setTextfieldEnabled:(BOOL)textfieldEnabled {
+    _textfieldEnabled = textfieldEnabled;
+    self.cellTextField.userInteractionEnabled = textfieldEnabled;
 }
 
 #pragma mark - Tag Filtering
@@ -332,7 +341,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
             } else {
                 return YES;
             }
-        } else {
+        } else if (self.shouldAutomaticallyChangeVisibilityState) {
             self.visibilityState = PARTagPickerVisibilityStateTopAndBottom;
         }
     } else if (collectionView == self.availableTagCollectionView){
@@ -353,8 +362,10 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     if (selectedIndexPath) {
         [self.chosenTagCollectionView deselectItemAtIndexPath:selectedIndexPath animated:YES];
     }
-    [self.cellTextField becomeFirstResponder];
-    self.cellTextField.text = cell.phantomTextField.text;
+    if (self.textfieldEnabled) {
+        [self.cellTextField becomeFirstResponder];
+        self.cellTextField.text = cell.phantomTextField.text;
+    }
 }
 
 #pragma mark - RBTextFieldCollectionViewCellDelegate
@@ -405,6 +416,10 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 }
 
 - (void)editingInTextFieldCollectionViewCell:(PARTextFieldCollectionViewCell *)cell becameActive:(BOOL)active {
+    if (!self.shouldAutomaticallyChangeVisibilityState) {
+        return;
+    }
+    
     if (!active && [self.chosenTagCollectionView indexPathsForSelectedItems].count > 0) {
         return;
     }
@@ -435,7 +450,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
             if (self.chosenTags.count > 0 && nextRow >= 0 && selectedPath.row != self.chosenTags.count) {
                 NSIndexPath *nextSelection = [NSIndexPath indexPathForItem:nextRow inSection:0];
                 [self.chosenTagCollectionView selectItemAtIndexPath:nextSelection animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
-            } else {
+            } else if (self.textfieldEnabled) {
                 [self.cellTextField becomeFirstResponder];
             }
             

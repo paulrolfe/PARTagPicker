@@ -54,10 +54,16 @@
     //self.tagPicker.font = [UIFont fontWithName:@"Menlo-Regular" size:14];
     
     //optionally set default placeholder text
-    //self.tagPicker.placeholderText = @"Insert Tag Here";
+    //self.tagPicker.placeholderText = @"";
     
     //optionally disable the tap to remove tags
     //self.tagPicker.tapToEraseTags = NO;
+    
+    //optionally disable all editing
+    //self.tagPicker.textfieldEnabled = NO;
+    
+    //optionally take control of when the bottom row shows and hides, manually.
+    //self.tagPicker.shouldAutomaticallyChangeVisibilityState = NO;
     
     [self addChildViewController:self.tagPicker];
     [self.view addSubview:self.tagPicker.view];
