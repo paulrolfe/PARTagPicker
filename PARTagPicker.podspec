@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "PARTagPicker"
-  s.version      = "1.1.0"
+  s.version      = "1.2.0"
   s.summary      = "This pod provides a view controller for choosing and creating tags in the style of wordpress or tumblr."
   s.homepage     = "https://github.com/paulrolfe/PARTagPicker"
   s.screenshots  = "https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record1.gif", "https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record2.gif", "https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record3.gif", "https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record4.gif"
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.author             = { "Paul Rolfe" => "paul.a.rolfe@gmail.com" }
   s.social_media_url   = "http://twitter.com/thepaulrolfe"
   s.platform     = :ios, "6.0"
-  s.source       = { :git => "https://github.com/paulrolfe/PARTagPicker.git", :tag => "1.1.0" }
+  s.source       = { :git => "https://github.com/paulrolfe/PARTagPicker.git", :tag => "#{s.version}" }
   s.source_files  = "PARTagPicker/Classes/*.{h,m}"
   s.resource_bundle = {"PARTagPicker" => "PARTagPicker/Resources/*.xib"}
   s.framework  = "UIKit"
