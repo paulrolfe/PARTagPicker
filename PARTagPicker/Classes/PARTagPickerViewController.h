@@ -101,6 +101,21 @@ typedef NS_ENUM(NSUInteger, PARTagPickerVisibilityState) {
 @property (nonatomic) BOOL tapToEraseTags;
 
 /**
+ *  Defaults to YES. If set to NO, the cells will not be non interactive. Scrolling will work, but tapping will have no effect and the textfield won't appear.
+ */
+@property (nonatomic) BOOL textfieldEnabled;
+
+/**
+ *  Defaults to YES. If set to NO, the bottom row of selectable options will not appear automatically. This can be used to allow you to take control of when rows are shown manually.
+ 
+    When set to YES, if the top row is tapped. The bottom row of the `availableTags` will animate in and the top row of `chosenTags` will become editable by tapping or keyboard depending on other settings.
+ 
+    When set to NO, changes will only happen when you explicitly change the visibilityState.
+ */
+@property (nonatomic) BOOL shouldAutomaticallyChangeVisibilityState;
+
+
+/**
  *  Opens the visibility state to TopAndBottom and puts the cursor as active in the textfield cell.
  */
 - (void)becomeFirstResponder;
