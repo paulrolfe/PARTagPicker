@@ -229,18 +229,20 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 }
 
 - (void)removeChosenTagFromIndexPath:(NSIndexPath *)indexPath {
-    NSString *selectedTag = [self.chosenTags objectAtIndex:indexPath.row];
-    if ([self.allTags containsObject:selectedTag]) {
-        [self.availableTags addObject:selectedTag];
-        [self.availableTagCollectionView reloadData];
-    }
-    [self.chosenTags removeObject:selectedTag];
-    [self.chosenTagCollectionView deleteItemsAtIndexPaths:@[indexPath]];
-    if ([self.delegate respondsToSelector:@selector(chosenTagsWereUpdatedInTagPicker:)]) {
-        [self.delegate chosenTagsWereUpdatedInTagPicker:self];
-    }
-    if (self.chosenTags.count == 0) {
-        [self addPlaceholderTextToCellTextField];
+    if ([self.chosenTags count] > indexPath.row) {
+        NSString *selectedTag = [self.chosenTags objectAtIndex:indexPath.row];
+        if ([self.allTags containsObject:selectedTag]) {
+            [self.availableTags addObject:selectedTag];
+            [self.availableTagCollectionView reloadData];
+        }
+        [self.chosenTags removeObject:selectedTag];
+        [self.chosenTagCollectionView deleteItemsAtIndexPaths:@[indexPath]];
+        if ([self.delegate respondsToSelector:@selector(chosenTagsWereUpdatedInTagPicker:)]) {
+            [self.delegate chosenTagsWereUpdatedInTagPicker:self];
+        }
+        if (self.chosenTags.count == 0) {
+            [self addPlaceholderTextToCellTextField];
+        }
     }
 }
 
