@@ -84,14 +84,14 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     [self transferChosenTagsWithNewAllTags];
     [self.availableTags removeObjectsInArray:self.chosenTags];
     [self filterTagsFromSearchString];
-    [self.availableTagCollectionView reloadData];
 }
 
 - (void)setChosenTags:(NSMutableArray *)chosenTags {
     _chosenTags = chosenTags;
     [self.chosenTagCollectionView reloadData];
-    [self.availableTags removeObjectsInArray:self.chosenTags];
-    [self.availableTagCollectionView reloadData];
+    self.availableTags = [self.allTags mutableCopy];
+    [self.availableTags removeObjectsInArray: chosenTags];
+    [self filterTagsFromSearchString];
 }
 
 - (void)transferChosenTagsWithNewAllTags {
