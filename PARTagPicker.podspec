@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "PARTagPicker"
-  s.version      = "1.2.0"
+  s.version      = "1.2.1"
   s.summary      = "This pod provides a view controller for choosing and creating tags in the style of wordpress or tumblr."
   s.homepage     = "https://github.com/paulrolfe/PARTagPicker"
   s.screenshots  = "https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record1.gif", "https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record2.gif", "https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record3.gif", "https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record4.gif"
