@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NX5-xi-CxW">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NX5-xi-CxW">
                     <rect key="frame" x="255" y="285" width="89" height="30"/>
                     <state key="normal" title="Hide All Tags">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -24,7 +24,7 @@
                         <action selector="hideAllTags:" destination="-1" eventType="touchUpInside" id="XYX-bs-HSw"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rFt-4m-Gtp">
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rFt-4m-Gtp">
                     <rect key="frame" x="216" y="323" width="168" height="30"/>
                     <state key="normal" title="Show Chosen Tags Only">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -42,12 +42,30 @@
                         <action selector="showAllTags:" destination="-1" eventType="touchUpInside" id="ukf-JI-Xxk"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EqL-Sp-xD2">
+                    <rect key="frame" x="275" y="361" width="49" height="30"/>
+                    <state key="normal" title="Add All"/>
+                    <connections>
+                        <action selector="addAll:" destination="-1" eventType="touchUpInside" id="BpP-4K-3BA"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9A-aV-qQP">
+                    <rect key="frame" x="271.5" y="399" width="57" height="30"/>
+                    <state key="normal" title="Clear All"/>
+                    <connections>
+                        <action selector="clearAll:" destination="-1" eventType="touchUpInside" id="7PB-ru-o2e"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
+                <constraint firstItem="EqL-Sp-xD2" firstAttribute="top" secondItem="rFt-4m-Gtp" secondAttribute="bottom" constant="8" id="72K-Nq-Pcw"/>
                 <constraint firstAttribute="centerX" secondItem="rFt-4m-Gtp" secondAttribute="centerX" id="7Xi-hm-PDA"/>
                 <constraint firstAttribute="centerX" secondItem="G0u-nI-QOF" secondAttribute="centerX" id="8nA-F2-TtW"/>
+                <constraint firstItem="S9A-aV-qQP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="9Ep-Ac-FMm"/>
+                <constraint firstItem="EqL-Sp-xD2" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Ftl-yJ-ugn"/>
                 <constraint firstAttribute="centerY" secondItem="NX5-xi-CxW" secondAttribute="centerY" id="LoW-Ed-EAC"/>
+                <constraint firstItem="S9A-aV-qQP" firstAttribute="top" secondItem="EqL-Sp-xD2" secondAttribute="bottom" constant="8" id="PnX-AP-c6x"/>
                 <constraint firstItem="NX5-xi-CxW" firstAttribute="top" secondItem="G0u-nI-QOF" secondAttribute="bottom" constant="8" id="hg2-Lo-3Ge"/>
                 <constraint firstAttribute="centerX" secondItem="NX5-xi-CxW" secondAttribute="centerX" id="rZt-TJ-d4t"/>
                 <constraint firstItem="rFt-4m-Gtp" firstAttribute="top" secondItem="NX5-xi-CxW" secondAttribute="bottom" constant="8" id="saI-6Q-kwH"/>
