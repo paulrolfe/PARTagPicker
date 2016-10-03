@@ -431,7 +431,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     }
     if (active) {
         [self setVisibilityState:PARTagPickerVisibilityStateTopAndBottom];
-    } else {
+    } else if (self.visibilityState != PARTagPickerVisibilityStateHidden) {
         [self setVisibilityState:PARTagPickerVisibilityStateTopOnly];
     }
 }
