@@ -36,7 +36,7 @@
                         <outlet property="delegate" destination="-1" id="4FX-3f-Kh4"/>
                     </connections>
                 </collectionView>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="0nj-WZ-ytQ" userLabel="Chosen Collection View">
+                <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="0nj-WZ-ytQ" userLabel="Chosen Collection View">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
