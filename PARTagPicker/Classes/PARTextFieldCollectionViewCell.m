@@ -18,6 +18,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.tagTextField.textColor = [UIColor blackColor];
+    self.clipsToBounds = NO;
 }
 
 - (void)useTextColor:(UIColor *)textColor tintColor:(UIColor *)tintColor {

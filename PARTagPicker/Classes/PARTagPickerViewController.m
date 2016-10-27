@@ -84,13 +84,14 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     [self transferChosenTagsWithNewAllTags];
     [self.availableTags removeObjectsInArray:self.chosenTags];
     [self filterTagsFromSearchString];
-    [self.availableTagCollectionView reloadData];
 }
 
 - (void)setChosenTags:(NSMutableArray *)chosenTags {
     _chosenTags = chosenTags;
     [self.chosenTagCollectionView reloadData];
-    [self.availableTags removeObjectsInArray:self.chosenTags];
+    self.availableTags = [self.allTags mutableCopy];
+    [self.availableTags removeObjectsInArray: chosenTags];
+    [self filterTagsFromSearchString];
 }
 
 - (void)transferChosenTagsWithNewAllTags {
@@ -198,6 +199,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
         self.chosenTagCollectionViewHeightConstraint.constant = COLLECTION_VIEW_HEIGHT;
     }
     [UIView animateWithDuration:.5 animations:^{
+        [self.chosenTagCollectionView.collectionViewLayout invalidateLayout];
         [self.view layoutIfNeeded];
     }];
 }
@@ -212,6 +214,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
         self.availableTagCollectionViewHeightConstraint.constant = COLLECTION_VIEW_HEIGHT;
     }
     [UIView animateWithDuration:.5 animations:^{
+        [self.availableTagCollectionView.collectionViewLayout invalidateLayout];
         [self.view layoutIfNeeded];
     }];
 }
@@ -264,8 +267,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (collectionView == self.availableTagCollectionView) {
         return self.filteredAvailableTags.count;
-    }
-    if (collectionView == self.chosenTagCollectionView) {
+    } else if (collectionView == self.chosenTagCollectionView) {
         return self.chosenTags.count + 1;
     } else {
         return 0;
@@ -322,9 +324,9 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
             sizingCell = [[PARTagCollectionViewCell alloc] initWithNibNamed:nil];
         }
         NSString *tag;
-        if (collectionView == self.availableTagCollectionView) {
+        if (collectionView == self.availableTagCollectionView && indexPath.row < self.filteredAvailableTags.count) {
             tag = self.filteredAvailableTags[indexPath.row];
-        } else if (collectionView == self.chosenTagCollectionView) {
+        } else if (collectionView == self.chosenTagCollectionView && indexPath.row < self.chosenTags.count) {
             tag = self.chosenTags[indexPath.row];
         }
         sizingCell.tagLabel.text = tag;
@@ -429,7 +431,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     }
     if (active) {
         [self setVisibilityState:PARTagPickerVisibilityStateTopAndBottom];
-    } else {
+    } else if (self.visibilityState != PARTagPickerVisibilityStateHidden) {
         [self setVisibilityState:PARTagPickerVisibilityStateTopOnly];
     }
 }

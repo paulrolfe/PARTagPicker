@@ -123,4 +123,11 @@
     self.tagPicker.visibilityState = PARTagPickerVisibilityStateTopOnly;
 }
 
+- (IBAction)addAll:(id)sender {
+    [_tagPicker setChosenTags:[self.allTags mutableCopy]];
+}
+- (IBAction)clearAll:(id)sender {
+    [_tagPicker setChosenTags:[@[] mutableCopy]];
+}
+
 @end
