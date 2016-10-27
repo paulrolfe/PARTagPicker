@@ -238,7 +238,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
             [self.availableTags addObject:selectedTag];
             [self.availableTagCollectionView reloadData];
         }
-        [self.chosenTags removeObject:selectedTag];
+        [self.chosenTags removeObjectAtIndex:indexPath.row];
         [self.chosenTagCollectionView deleteItemsAtIndexPaths:@[indexPath]];
         if ([self.delegate respondsToSelector:@selector(chosenTagsWereUpdatedInTagPicker:)]) {
             [self.delegate chosenTagsWereUpdatedInTagPicker:self];
