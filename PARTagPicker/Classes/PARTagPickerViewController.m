@@ -45,7 +45,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
         self.textfieldEnabled = YES;
         self.shouldAutomaticallyChangeVisibilityState = YES;
         self.placeholderText = @"Add a tag";
-        self.tagColorRef = [[PARTagColorReference alloc] initWithDefaultColors];
+        //self.tagColorRef = [[PARTagColorReference alloc] initWithDefaultColors];
         self.textfieldPlaceholderTextColor = [UIColor grayColor];
         self.textfieldRegularTextColor = [UIColor whiteColor];
     }
@@ -295,7 +295,24 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
         return textFieldCell;
     } else {
         PARTagCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PARTagCollectionViewCellIdentifier forIndexPath:indexPath];
-        cell.tagColorRef = self.tagColorRef;
+        //cell.tagColorRef = self.tagColorRef;
+        
+        PARTagColorReference *color = [PARTagColorReference new];
+        color.chosenTagTextColor = [self.dataSource tagPicker:self chosenTagTextColorForIndex:indexPath.row];
+        color.chosenTagBorderColor = [self.dataSource tagPicker:self chosenTagBorderColorForIndex:indexPath.row];
+        color.chosenTagBackgroundColor = [self.dataSource tagPicker:self chosenTagBackgroundColorForIndex:indexPath.row];
+        
+        color.highlightedTagTextColor = [self.dataSource tagPicker:self highlightedTagTextColorForIndex:indexPath.row];
+        color.highlightedTagBorderColor = [self.dataSource tagPicker:self highlightedTagBorderColorForIndex:indexPath.row];
+        color.highlightedTagBackgroundColor = [self.dataSource tagPicker:self highlightedTagBackgroundColorForIndex:indexPath.row];
+        
+        color.defaultTagTextColor = [self.dataSource tagPicker:self defaultTagTextColorForIndex:indexPath.row];
+        color.defaultTagBorderColor = [self.dataSource tagPicker:self defaultTagBorderColorForIndex:indexPath.row];
+        color.defaultTagBackgroundColor = [self.dataSource tagPicker:self defaultTagBackgroundColorForIndex:indexPath.row];
+        
+        
+        cell.tagColorRef = color;
+        
         NSString *tag;
         if (collectionView == self.availableTagCollectionView) {
             tag = self.filteredAvailableTags[indexPath.row];

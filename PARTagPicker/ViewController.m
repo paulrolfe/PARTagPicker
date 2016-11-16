@@ -10,7 +10,7 @@
 #import "PARTagPickerViewController.h"
 #import "PARTagColorReference.h"
 
-@interface ViewController () <PARTagPickerDelegate>
+@interface ViewController () <PARTagPickerDelegate, PARTagPickerDataSource>
 
 @property (nonatomic, strong) PARTagPickerViewController *tagPicker;
 @property (nonatomic, strong) NSArray *allTags;
@@ -39,6 +39,7 @@
     self.tagPicker.view.frame = CGRectMake(0, 20, CGRectGetWidth(self.view.bounds), COLLECTION_VIEW_HEIGHT); //78 is the fully expanded height.
     self.tagPicker.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.tagPicker.delegate = self;
+    self.tagPicker.dataSource = self;
     self.tagPicker.allTags = self.allTags;
     
     //optionally allow new tags to be made
@@ -69,7 +70,7 @@
     [self.view addSubview:self.tagPicker.view];
 }
 
-- (void)useCustomColors {
+/*- (void)useCustomColors {
     PARTagColorReference *myColors = [PARTagColorReference new];
     
     myColors.chosenTagBorderColor = [UIColor blueColor];
@@ -84,11 +85,48 @@
     myColors.highlightedTagBackgroundColor = [UIColor yellowColor];
     myColors.highlightedTagTextColor = [UIColor blackColor];
     
-    self.tagPicker.tagColorRef = myColors;
+    //self.tagPicker.tagColorRef = myColors;
+}*/
+
+#pragma mark - PARTagPickerDataSource
+    
+- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagBackgroundColorForIndex:(NSInteger)index {
+    return [UIColor purpleColor];
+}
+    
+- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagBorderColorForIndex:(NSInteger)index{
+    return [UIColor blueColor];
+}
+    
+- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagTextColorForIndex:(NSInteger)index{
+    return [UIColor whiteColor];
+}
+    
+- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagTextColorForIndex:(NSInteger)index{
+    return [UIColor blackColor];
+}
+    
+- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagBackgroundColorForIndex:(NSInteger)index{
+    return [UIColor orangeColor];
 }
 
-#pragma mark - PARTagPickerDelegate
+- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagBorderColorForIndex:(NSInteger)index{
+    return [UIColor greenColor];
+}
 
+- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagTextColorForIndex:(NSInteger)index{
+    return [UIColor blackColor];
+}
+    
+- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagBackgroundColorForIndex:(NSInteger)index{
+    return [UIColor yellowColor];
+}
+    
+- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagBorderColorForIndex:(NSInteger)index{
+    return [UIColor magentaColor];
+}
+    
+#pragma mark - PARTagPickerDelegate
 - (void)tagPicker:(PARTagPickerViewController *)tagPicker visibilityChangedToState:(PARTagPickerVisibilityState)state {
     //you can adjust this view controller's view to change with the tagPicker's size change, if needed.
     CGFloat newHeight = 0;

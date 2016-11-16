@@ -18,6 +18,31 @@ typedef NS_ENUM(NSUInteger, PARTagPickerVisibilityState) {
     PARTagPickerVisibilityStateTopOnly,
 };
 
+
+@protocol PARTagPickerDataSource <NSObject>
+
+    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagBackgroundColorForIndex:(NSInteger)index;
+    
+    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagTextColorForIndex:(NSInteger)index;
+    
+    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagBorderColorForIndex:(NSInteger)index;
+    
+    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagBackgroundColorForIndex:(NSInteger)index;
+    
+    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagTextColorForIndex:(NSInteger)index;
+    
+    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagBorderColorForIndex:(NSInteger)index;
+    
+    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagBackgroundColorForIndex:(NSInteger)index;
+    
+    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagTextColorForIndex:(NSInteger)index;
+    
+    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagBorderColorForIndex:(NSInteger)index;
+    
+@end
+
+
+
 @protocol PARTagPickerDelegate <NSObject>
 
 /**
@@ -65,6 +90,8 @@ typedef NS_ENUM(NSUInteger, PARTagPickerVisibilityState) {
 @property (nonatomic) PARTagPickerVisibilityState visibilityState;
 
 @property (nonatomic, weak) id<PARTagPickerDelegate> delegate;
+@property (nonatomic, weak) id<PARTagPickerDataSource> dataSource;
+    
 
 //TODO: conform to UIAppearance
 
@@ -88,7 +115,7 @@ typedef NS_ENUM(NSUInteger, PARTagPickerVisibilityState) {
 /**
  *  See PARTagColorReference for more details. This is a class of object that makes it easy to change the color of the tag cells.
  */
-@property (nonatomic, strong) PARTagColorReference *tagColorRef;
+//@property (nonatomic, strong) PARTagColorReference *tagColorRef;
 
 /**
  *  The default text to have as placeholder text in each tag cell. Default value is @"Add a tag".
