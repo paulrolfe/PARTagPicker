@@ -39,15 +39,17 @@
     NSMutableArray<PARTag *> *allTagsCreated = [[NSMutableArray alloc] initWithCapacity:allTags.count];
     NSMutableArray<PARTag *> *allTagsPreChosen = [[NSMutableArray alloc] initWithCapacity:preChosenTags.count];
     
+    __weak ViewController *weakSelf = self;
+    
     [allTags enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        PARTag *tag = [[PARTag alloc] initWithText: obj];
+        PARTag *tag = [[PARTag alloc] initWithText: obj andColorReference: [weakSelf useCustomColors]];
         [allTagsCreated addObject:tag];
         
     }];
     
     [preChosenTags enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        PARTag *tag = [[PARTag alloc] initWithText: obj];
+        PARTag *tag = [[PARTag alloc] initWithText: obj andColorReference: [weakSelf useCustomColors]];
         [allTagsPreChosen addObject:tag];
     }];
     
@@ -68,10 +70,10 @@
     self.tagPicker.allowsNewTags = YES;
     
     //optionally set some chosen tags
-    //self.tagPicker.chosenTags = [self.preChosenTags mutableCopy];
+    self.tagPicker.chosenTags = [self.preChosenTags mutableCopy];
     
     //optionally use custom colors using PARTagColorReference
-    //[self useCustomColors];
+    self.tagPicker.tagColorRef = [self useCustomColors];
     
     //optionally set the font for all the cells
     //self.tagPicker.font = [UIFont fontWithName:@"Menlo-Regular" size:14];
@@ -92,7 +94,7 @@
     [self.view addSubview:self.tagPicker.view];
 }
 
-/*- (void)useCustomColors {
+- (PARTagColorReference *)useCustomColors {
     PARTagColorReference *myColors = [PARTagColorReference new];
     
     myColors.chosenTagBorderColor = [UIColor blueColor];
@@ -108,7 +110,8 @@
     myColors.highlightedTagTextColor = [UIColor blackColor];
     
     //self.tagPicker.tagColorRef = myColors;
-}*/
+    return myColors;
+}
     
 #pragma mark - PARTagPickerDelegate
 - (void)tagPicker:(PARTagPickerViewController *)tagPicker visibilityChangedToState:(PARTagPickerVisibilityState)state {
