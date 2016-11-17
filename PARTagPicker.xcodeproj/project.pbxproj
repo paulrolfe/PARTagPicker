@@ -16,7 +16,6 @@
 		1C8102D71B6A999C00AC87B3 /* PARTextFieldCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8102D21B6A999C00AC87B3 /* PARTextFieldCollectionViewCell.m */; };
 		1C8102D81B6A999C00AC87B3 /* PARTextFieldCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C8102D31B6A999C00AC87B3 /* PARTextFieldCollectionViewCell.xib */; };
 		1C8102DB1B6A99AA00AC87B3 /* PARTagColorReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8102DA1B6A99AA00AC87B3 /* PARTagColorReference.m */; };
-		1C8102E01B6A99B700AC87B3 /* NSString+PARStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8102DD1B6A99B700AC87B3 /* NSString+PARStrings.m */; };
 		1C8102E11B6A99B700AC87B3 /* UIView+NibInitable.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C8102DF1B6A99B700AC87B3 /* UIView+NibInitable.m */; };
 		1CF87EEF1B5EED0E0007165E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF87EEE1B5EED0E0007165E /* main.m */; };
 		1CF87EF21B5EED0E0007165E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF87EF11B5EED0E0007165E /* AppDelegate.m */; };
@@ -53,8 +52,6 @@
 		1C8102D31B6A999C00AC87B3 /* PARTextFieldCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PARTextFieldCollectionViewCell.xib; path = Resources/PARTextFieldCollectionViewCell.xib; sourceTree = "<group>"; };
 		1C8102D91B6A99AA00AC87B3 /* PARTagColorReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PARTagColorReference.h; path = Classes/PARTagColorReference.h; sourceTree = "<group>"; };
 		1C8102DA1B6A99AA00AC87B3 /* PARTagColorReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PARTagColorReference.m; path = Classes/PARTagColorReference.m; sourceTree = "<group>"; };
-		1C8102DC1B6A99B700AC87B3 /* NSString+PARStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+PARStrings.h"; path = "Classes/NSString+PARStrings.h"; sourceTree = "<group>"; };
-		1C8102DD1B6A99B700AC87B3 /* NSString+PARStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+PARStrings.m"; path = "Classes/NSString+PARStrings.m"; sourceTree = "<group>"; };
 		1C8102DE1B6A99B700AC87B3 /* UIView+NibInitable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+NibInitable.h"; path = "Classes/UIView+NibInitable.h"; sourceTree = "<group>"; };
 		1C8102DF1B6A99B700AC87B3 /* UIView+NibInitable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+NibInitable.m"; path = "Classes/UIView+NibInitable.m"; sourceTree = "<group>"; };
 		1CF87EE91B5EED0E0007165E /* PARTagPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PARTagPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,8 +68,8 @@
 		1CF87F081B5EED0E0007165E /* PARTagPickerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PARTagPickerTests.m; sourceTree = "<group>"; };
 		5156B2EB1DDDCAB000E6D8B8 /* PARTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARTag.h; sourceTree = "<group>"; };
 		5156B2EC1DDDCAB000E6D8B8 /* PARTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PARTag.m; sourceTree = "<group>"; };
-		5156B2EE1DDDD09C00E6D8B8 /* PARTag+Comparison.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PARTag+Comparison.h"; sourceTree = "<group>"; };
-		5156B2EF1DDDD09C00E6D8B8 /* PARTag+Comparison.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PARTag+Comparison.m"; sourceTree = "<group>"; };
+		5156B2EE1DDDD09C00E6D8B8 /* PARTag+Comparison.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PARTag+Comparison.h"; path = "Classes/Tag/PARTag+Comparison.h"; sourceTree = "<group>"; };
+		5156B2EF1DDDD09C00E6D8B8 /* PARTag+Comparison.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PARTag+Comparison.m"; path = "Classes/Tag/PARTag+Comparison.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,8 +167,8 @@
 		1CF87F311B5FBFE20007165E /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				1C8102DC1B6A99B700AC87B3 /* NSString+PARStrings.h */,
-				1C8102DD1B6A99B700AC87B3 /* NSString+PARStrings.m */,
+				5156B2EE1DDDD09C00E6D8B8 /* PARTag+Comparison.h */,
+				5156B2EF1DDDD09C00E6D8B8 /* PARTag+Comparison.m */,
 				1C8102DE1B6A99B700AC87B3 /* UIView+NibInitable.h */,
 				1C8102DF1B6A99B700AC87B3 /* UIView+NibInitable.m */,
 			);
@@ -207,8 +204,6 @@
 			children = (
 				5156B2EB1DDDCAB000E6D8B8 /* PARTag.h */,
 				5156B2EC1DDDCAB000E6D8B8 /* PARTag.m */,
-				5156B2EE1DDDD09C00E6D8B8 /* PARTag+Comparison.h */,
-				5156B2EF1DDDD09C00E6D8B8 /* PARTag+Comparison.m */,
 			);
 			name = Tag;
 			path = Classes/Tag;
@@ -325,7 +320,6 @@
 				1C8102D41B6A999C00AC87B3 /* PARBackspaceTextField.m in Sources */,
 				1C8102CA1B6A998500AC87B3 /* PARTagPickerViewController.m in Sources */,
 				1CF87EF51B5EED0E0007165E /* ViewController.m in Sources */,
-				1C8102E01B6A99B700AC87B3 /* NSString+PARStrings.m in Sources */,
 				1CF87EF21B5EED0E0007165E /* AppDelegate.m in Sources */,
 				1C8102D51B6A999C00AC87B3 /* PARTagCollectionViewCell.m in Sources */,
 				1CF87EEF1B5EED0E0007165E /* main.m in Sources */,

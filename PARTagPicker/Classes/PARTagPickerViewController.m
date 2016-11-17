@@ -304,8 +304,10 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
             
             if (tag.colorReference){
                 cell.tagColorRef = tag.colorReference;
-            } else {
+            } else if (self.tagColorRef){
                 cell.tagColorRef = self.tagColorRef;
+            } else {
+                cell.tagColorRef = [[PARTagColorReference alloc] initWithDefaultColors];
             }
             
             [cell showAsChosen:NO];
@@ -314,8 +316,10 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
             
             if (tag.colorReference){
                 cell.tagColorRef = tag.colorReference;
-            } else {
+            } else if (self.tagColorRef) {
                 cell.tagColorRef = self.tagColorRef;
+            } else {
+                cell.tagColorRef = [[PARTagColorReference alloc] initWithDefaultColors];
             }
             
             [cell showAsChosen:YES];

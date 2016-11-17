@@ -19,12 +19,6 @@ typedef NS_ENUM(NSUInteger, PARTagPickerVisibilityState) {
     PARTagPickerVisibilityStateTopOnly,
 };
 
-typedef NS_ENUM(NSUInteger, PARTagPickerElement) {
-    PARTagPickerElementSelected,
-    PARTagPickerElementRemaining
-};
-
-
 
 @protocol PARTagPickerDelegate <NSObject>
 
