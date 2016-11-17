@@ -43,13 +43,19 @@
     
     [allTags enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        PARTag *tag = [[PARTag alloc] initWithText: obj andColorReference: [weakSelf useCustomColors]];
+        PARTag *tag = [[PARTag alloc] initWithText:obj];
+        
+        // Each color can have it's own color scheme
+        //PARTag *tag = [[PARTag alloc] initWithText: obj andColorReference: [weakSelf useCustomColors]];
         [allTagsCreated addObject:tag];
         
     }];
     
     [preChosenTags enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        PARTag *tag = [[PARTag alloc] initWithText: obj andColorReference: [weakSelf useCustomColors]];
+        PARTag *tag = [[PARTag alloc] initWithText:obj];
+        
+        // Each color can have it's own color scheme
+        //PARTag *tag = [[PARTag alloc] initWithText: obj andColorReference: [weakSelf useCustomColors]];
         [allTagsPreChosen addObject:tag];
     }];
     
@@ -73,7 +79,7 @@
     self.tagPicker.chosenTags = [self.preChosenTags mutableCopy];
     
     //optionally use custom colors using PARTagColorReference
-    self.tagPicker.tagColorRef = [self useCustomColors];
+    //self.tagPicker.tagColorRef = [self useCustomColors];
     
     //optionally set the font for all the cells
     //self.tagPicker.font = [UIFont fontWithName:@"Menlo-Regular" size:14];
