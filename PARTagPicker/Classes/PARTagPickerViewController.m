@@ -419,7 +419,8 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
                 [self addChosenTagFromIndexPath:pathOfIt];
             } else {
                 
-                PARTag *newTag = [[PARTag alloc] initWithText:tag andColorReference:_tagColorRef];
+                //PARTag *newTag = [[PARTag alloc] initWithText:tag andColorReference:_tagColorRef];
+                PARTag *newTag = [[PARTag alloc] init:[[NSUUID UUID] UUIDString] withText:tag andColorReference:_tagColorRef];
                 
                 [self.chosenTags addObject:newTag];
                 NSIndexPath *pathToMake = [NSIndexPath indexPathForItem:self.chosenTags.count - 1 inSection:0];

@@ -13,8 +13,11 @@
 
 - (instancetype) initWithText:(NSString *)text;
 
-- (instancetype) initWithText:(NSString *)text andColorReference:(PARTagColorReference *) colorReference;
+- (instancetype) init:(NSString *) tagID withText:(NSString *)text;
 
+- (instancetype) init:(NSString *) tagID withText:(NSString *)text andColorReference:(PARTagColorReference *) colorReference;
+
+@property (nonatomic, strong) NSString *tagID;
 @property (nonatomic, strong) NSString *text;
 
 @property (nonatomic, strong) PARTagColorReference *colorReference;

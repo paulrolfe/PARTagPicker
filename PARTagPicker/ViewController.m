@@ -43,7 +43,8 @@
     
     [allTags enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        PARTag *tag = [[PARTag alloc] initWithText:obj];
+        //PARTag *tag = [[PARTag alloc] initWithText:obj];
+        PARTag *tag = [[PARTag alloc] init:[[NSUUID UUID] UUIDString] withText:obj];
         
         // Each color can have it's own color scheme
         //PARTag *tag = [[PARTag alloc] initWithText: obj andColorReference: [weakSelf useCustomColors]];
@@ -52,7 +53,8 @@
     }];
     
     [preChosenTags enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        PARTag *tag = [[PARTag alloc] initWithText:obj];
+        //PARTag *tag = [[PARTag alloc] initWithText:obj];
+        PARTag *tag = [[PARTag alloc] init:[[NSUUID UUID] UUIDString] withText:obj];
         
         // Each color can have it's own color scheme
         //PARTag *tag = [[PARTag alloc] initWithText: obj andColorReference: [weakSelf useCustomColors]];

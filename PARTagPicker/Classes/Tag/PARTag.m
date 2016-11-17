@@ -11,20 +11,34 @@
 @implementation PARTag
 
 - (instancetype) initWithText:(NSString *)text{
-    
+
     self = [super init];
     if (self) {
         self.text = text;
+        self.tagID = [[NSUUID UUID] UUIDString];
         //self.colorReference = [[PARTagColorReference alloc] initWithDefaultColors];
     }
     return self;
     
 }
 
-- (instancetype) initWithText:(NSString *)text andColorReference:(PARTagColorReference *) colorReference{
+- (instancetype) init:(NSString *) tagID withText:(NSString *)text{
     
     self = [super init];
     if (self) {
+        self.text = text;
+        self.tagID = tagID;
+        //self.colorReference = [[PARTagColorReference alloc] initWithDefaultColors];
+    }
+    return self;
+    
+}
+
+- (instancetype) init:(NSString *) tagID withText:(NSString *)text andColorReference:(PARTagColorReference *) colorReference{
+    
+    self = [super init];
+    if (self) {
+        self.tagID = tagID;
         self.text = text;
         self.colorReference = colorReference;
     }
