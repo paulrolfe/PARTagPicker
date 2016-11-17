@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.social_media_url   = "http://twitter.com/thepaulrolfe"
   s.platform     = :ios, "6.0"
   s.source       = { :git => "https://github.com/paulrolfe/PARTagPicker.git", :tag => "#{s.version}" }
-  s.source_files  = "PARTagPicker/Classes/*.{h,m}"
+  s.source_files  = "PARTagPicker/Classes/**/*.{h,m}"
   s.resource_bundle = {"PARTagPicker" => "PARTagPicker/Resources/*.xib"}
   s.framework  = "UIKit"
   s.requires_arc = true

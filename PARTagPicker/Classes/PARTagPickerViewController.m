@@ -45,7 +45,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
         self.textfieldEnabled = YES;
         self.shouldAutomaticallyChangeVisibilityState = YES;
         self.placeholderText = @"Add a tag";
-        //self.tagColorRef = [[PARTagColorReference alloc] initWithDefaultColors];
+        self.tagColorRef = [[PARTagColorReference alloc] initWithDefaultColors];
         self.textfieldPlaceholderTextColor = [UIColor grayColor];
         self.textfieldRegularTextColor = [UIColor whiteColor];
     }
@@ -301,13 +301,27 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
         PARTag *tag;
         if (collectionView == self.availableTagCollectionView) {
             tag = self.filteredAvailableTags[indexPath.row];
+            
+            if (tag.colorReference){
+                cell.tagColorRef = tag.colorReference;
+            } else {
+                cell.tagColorRef = self.tagColorRef;
+            }
+            
             [cell showAsChosen:NO];
         } else if (collectionView == self.chosenTagCollectionView) {
             tag = self.chosenTags[indexPath.row];
+            
+            if (tag.colorReference){
+                cell.tagColorRef = tag.colorReference;
+            } else {
+                cell.tagColorRef = self.tagColorRef;
+            }
+            
             [cell showAsChosen:YES];
         }
         cell.tagLabel.text = tag.text;
-        cell.tagColorRef = tag.colorReference;
+        
         if (self.font) {
             cell.tagLabel.font = self.font;
         }
@@ -333,7 +347,13 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
             tag = self.chosenTags[indexPath.row];
         }
         sizingCell.tagLabel.text = tag.text;
-        sizingCell.tagColorRef = tag.colorReference;
+        
+        if (tag.colorReference){
+            sizingCell.tagColorRef = tag.colorReference;
+        } else {
+            sizingCell.tagColorRef = self.tagColorRef;
+        }
+        
         sizingCell.tagLabel.font = self.font;
         CGSize size = [sizingCell systemLayoutSizeFittingSize:CGSizeMake(collectionView.contentSize.width, TAGCOLLECTION_CELL_HEIGHT) withHorizontalFittingPriority:UILayoutPriorityDefaultLow verticalFittingPriority:UILayoutPriorityDefaultHigh];
         return size;
@@ -395,7 +415,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
                 [self addChosenTagFromIndexPath:pathOfIt];
             } else {
                 
-                PARTag *newTag = [[PARTag alloc] initWithText:tag];
+                PARTag *newTag = [[PARTag alloc] initWithText:tag andColorReference:_tagColorRef];
                 
                 [self.chosenTags addObject:newTag];
                 NSIndexPath *pathToMake = [NSIndexPath indexPathForItem:self.chosenTags.count - 1 inSection:0];

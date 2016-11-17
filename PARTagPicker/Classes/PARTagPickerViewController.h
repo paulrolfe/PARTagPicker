@@ -97,7 +97,7 @@ typedef NS_ENUM(NSUInteger, PARTagPickerElement) {
 /**
  *  See PARTagColorReference for more details. This is a class of object that makes it easy to change the color of the tag cells.
  */
-//@property (nonatomic, strong) PARTagColorReference *tagColorRef;
+@property (nonatomic, strong) PARTagColorReference *tagColorRef;
 
 /**
  *  The default text to have as placeholder text in each tag cell. Default value is @"Add a tag".
