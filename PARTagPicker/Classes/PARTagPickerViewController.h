@@ -21,23 +21,23 @@ typedef NS_ENUM(NSUInteger, PARTagPickerVisibilityState) {
 
 @protocol PARTagPickerDataSource <NSObject>
 
-    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagBackgroundColorForIndex:(NSInteger)index;
+    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagBackgroundColorForIndex:(NSIndexPath *) index;
     
-    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagTextColorForIndex:(NSInteger)index;
+    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagTextColorForIndex:(NSIndexPath *) index;
     
-    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagBorderColorForIndex:(NSInteger)index;
+    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagBorderColorForIndex:(NSIndexPath *) index;
     
-    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagBackgroundColorForIndex:(NSInteger)index;
+    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagBackgroundColorForIndex:(NSIndexPath *) index;
     
-    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagTextColorForIndex:(NSInteger)index;
+    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagTextColorForIndex:(NSIndexPath *) index;
     
-    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagBorderColorForIndex:(NSInteger)index;
+    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagBorderColorForIndex:(NSIndexPath *) index;
     
-    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagBackgroundColorForIndex:(NSInteger)index;
+    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagBackgroundColorForIndex:(NSIndexPath *) index;
     
-    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagTextColorForIndex:(NSInteger)index;
+    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagTextColorForIndex:(NSIndexPath *) index;
     
-    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagBorderColorForIndex:(NSInteger)index;
+    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagBorderColorForIndex:(NSIndexPath *) index;
     
 @end
 

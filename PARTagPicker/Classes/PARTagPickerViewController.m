@@ -298,17 +298,17 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
         //cell.tagColorRef = self.tagColorRef;
         
         PARTagColorReference *color = [PARTagColorReference new];
-        color.chosenTagTextColor = [self.dataSource tagPicker:self chosenTagTextColorForIndex:indexPath.row];
-        color.chosenTagBorderColor = [self.dataSource tagPicker:self chosenTagBorderColorForIndex:indexPath.row];
-        color.chosenTagBackgroundColor = [self.dataSource tagPicker:self chosenTagBackgroundColorForIndex:indexPath.row];
+        color.chosenTagTextColor = [self.dataSource tagPicker:self chosenTagTextColorForIndex:indexPath];
+        color.chosenTagBorderColor = [self.dataSource tagPicker:self chosenTagBorderColorForIndex:indexPath];
+        color.chosenTagBackgroundColor = [self.dataSource tagPicker:self chosenTagBackgroundColorForIndex:indexPath];
         
-        color.highlightedTagTextColor = [self.dataSource tagPicker:self highlightedTagTextColorForIndex:indexPath.row];
-        color.highlightedTagBorderColor = [self.dataSource tagPicker:self highlightedTagBorderColorForIndex:indexPath.row];
-        color.highlightedTagBackgroundColor = [self.dataSource tagPicker:self highlightedTagBackgroundColorForIndex:indexPath.row];
+        color.highlightedTagTextColor = [self.dataSource tagPicker:self highlightedTagTextColorForIndex:indexPath];
+        color.highlightedTagBorderColor = [self.dataSource tagPicker:self highlightedTagBorderColorForIndex:indexPath];
+        color.highlightedTagBackgroundColor = [self.dataSource tagPicker:self highlightedTagBackgroundColorForIndex:indexPath];
         
-        color.defaultTagTextColor = [self.dataSource tagPicker:self defaultTagTextColorForIndex:indexPath.row];
-        color.defaultTagBorderColor = [self.dataSource tagPicker:self defaultTagBorderColorForIndex:indexPath.row];
-        color.defaultTagBackgroundColor = [self.dataSource tagPicker:self defaultTagBackgroundColorForIndex:indexPath.row];
+        color.defaultTagTextColor = [self.dataSource tagPicker:self defaultTagTextColorForIndex:indexPath];
+        color.defaultTagBorderColor = [self.dataSource tagPicker:self defaultTagBorderColorForIndex:indexPath];
+        color.defaultTagBackgroundColor = [self.dataSource tagPicker:self defaultTagBackgroundColorForIndex:indexPath];
         
         
         cell.tagColorRef = color;

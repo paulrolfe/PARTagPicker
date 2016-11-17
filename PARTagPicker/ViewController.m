@@ -90,39 +90,39 @@
 
 #pragma mark - PARTagPickerDataSource
     
-- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagBackgroundColorForIndex:(NSInteger)index {
+- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagBackgroundColorForIndex:(NSIndexPath *) index {
     return [UIColor purpleColor];
 }
     
-- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagBorderColorForIndex:(NSInteger)index{
+- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagBorderColorForIndex:(NSIndexPath *) index{
     return [UIColor blueColor];
 }
     
-- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagTextColorForIndex:(NSInteger)index{
+- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagTextColorForIndex:(NSIndexPath *) index{
     return [UIColor whiteColor];
 }
     
-- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagTextColorForIndex:(NSInteger)index{
+- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagTextColorForIndex:(NSIndexPath *) index{
     return [UIColor blackColor];
 }
     
-- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagBackgroundColorForIndex:(NSInteger)index{
+- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagBackgroundColorForIndex:(NSIndexPath *) index{
     return [UIColor orangeColor];
 }
 
-- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagBorderColorForIndex:(NSInteger)index{
+- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagBorderColorForIndex:(NSIndexPath *) index{
     return [UIColor greenColor];
 }
 
-- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagTextColorForIndex:(NSInteger)index{
+- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagTextColorForIndex:(NSIndexPath *) index{
     return [UIColor blackColor];
 }
     
-- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagBackgroundColorForIndex:(NSInteger)index{
+- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagBackgroundColorForIndex:(NSIndexPath *) index{
     return [UIColor yellowColor];
 }
     
-- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagBorderColorForIndex:(NSInteger)index{
+- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagBorderColorForIndex:(NSIndexPath *) index{
     return [UIColor magentaColor];
 }
     
