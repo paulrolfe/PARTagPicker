@@ -15,7 +15,7 @@
     self = [super init];
     if (self) {
         self.text = text;
-        self.colorReference = [[PARTagColorReference alloc] initWithDefaultColors];
+        //self.colorReference = [[PARTagColorReference alloc] initWithDefaultColors];
     }
     return self;
     
