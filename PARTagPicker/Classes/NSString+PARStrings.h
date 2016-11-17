@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PARTag.h"
 
 @interface NSString (PARStrings)
 
-- (NSString *)similarStringFromArray:(NSArray *)strings;
+- (BOOL)similarStringFromArray:(NSArray<PARTag *> *)strings;
 
 @end

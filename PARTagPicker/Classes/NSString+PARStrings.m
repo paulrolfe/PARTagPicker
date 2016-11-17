@@ -8,9 +8,10 @@
 
 #import "NSString+PARStrings.h"
 
+
 @implementation NSString (PARStrings)
 
-- (NSString *)similarStringFromArray:(NSArray *)strings {
+- (BOOL)similarStringFromArray:(NSArray<PARTag *> *)strings {
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"self LIKE %@", self];
     NSArray *similarStrings = [strings filteredArrayUsingPredicate:pred];
     return similarStrings.firstObject;

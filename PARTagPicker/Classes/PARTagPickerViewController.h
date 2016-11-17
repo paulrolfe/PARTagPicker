@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PARTag.h"
 
 @class PARTagPickerViewController, PARTagColorReference;
 
@@ -18,28 +19,10 @@ typedef NS_ENUM(NSUInteger, PARTagPickerVisibilityState) {
     PARTagPickerVisibilityStateTopOnly,
 };
 
-
-@protocol PARTagPickerDataSource <NSObject>
-
-    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagBackgroundColorForIndex:(NSIndexPath *) index;
-    
-    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagTextColorForIndex:(NSIndexPath *) index;
-    
-    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagBorderColorForIndex:(NSIndexPath *) index;
-    
-    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagBackgroundColorForIndex:(NSIndexPath *) index;
-    
-    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagTextColorForIndex:(NSIndexPath *) index;
-    
-    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagBorderColorForIndex:(NSIndexPath *) index;
-    
-    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagBackgroundColorForIndex:(NSIndexPath *) index;
-    
-    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagTextColorForIndex:(NSIndexPath *) index;
-    
-    - (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagBorderColorForIndex:(NSIndexPath *) index;
-    
-@end
+typedef NS_ENUM(NSUInteger, PARTagPickerElement) {
+    PARTagPickerElementSelected,
+    PARTagPickerElementRemaining
+};
 
 
 
@@ -72,12 +55,12 @@ typedef NS_ENUM(NSUInteger, PARTagPickerVisibilityState) {
 /**
  *  Array of strings.
  */
-@property (nonatomic, strong) NSArray *allTags;
+@property (nonatomic, strong) NSArray<PARTag *> *allTags;
 
 /**
  *  Array of strings.
  */
-@property (nonatomic, strong) NSMutableArray *chosenTags;
+@property (nonatomic, strong) NSMutableArray<PARTag *> *chosenTags;
 
 /**
  *  Boolean that determines if user is allowed to type in a new tag, and add it to the chosenTags array by hitting return.
@@ -90,7 +73,6 @@ typedef NS_ENUM(NSUInteger, PARTagPickerVisibilityState) {
 @property (nonatomic) PARTagPickerVisibilityState visibilityState;
 
 @property (nonatomic, weak) id<PARTagPickerDelegate> delegate;
-@property (nonatomic, weak) id<PARTagPickerDataSource> dataSource;
     
 
 //TODO: conform to UIAppearance

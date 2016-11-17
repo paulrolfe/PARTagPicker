@@ -9,8 +9,9 @@
 #import "ViewController.h"
 #import "PARTagPickerViewController.h"
 #import "PARTagColorReference.h"
+#import "PARTag.h"
 
-@interface ViewController () <PARTagPickerDelegate, PARTagPickerDataSource>
+@interface ViewController () <PARTagPickerDelegate>
 
 @property (nonatomic, strong) PARTagPickerViewController *tagPicker;
 @property (nonatomic, strong) NSArray *allTags;
@@ -29,8 +30,30 @@
 
 - (void)initDummyData {
     //Data for demo project
-    self.allTags = @[@"one fish", @"two fish", @"red fish", @"blue fish", @"the cat in the hat", @"Seuss"];
-    self.preChosenTags = @[@"in a box", @"with a fox", @"thing 1", @"thing 2"];
+    /*self.allTags = @[@"one fish", @"two fish", @"red fish", @"blue fish", @"the cat in the hat", @"Seuss"];
+    self.preChosenTags = @[@"in a box", @"with a fox", @"thing 1", @"thing 2"];*/
+    
+    NSArray *allTags = @[@"one fish", @"two fish", @"red fish", @"blue fish", @"the cat in the hat", @"Seuss"];
+    NSArray *preChosenTags = @[@"in a box", @"with a fox", @"thing 1", @"thing 2"];
+    
+    NSMutableArray<PARTag *> *allTagsCreated = [[NSMutableArray alloc] initWithCapacity:allTags.count];
+    NSMutableArray<PARTag *> *allTagsPreChosen = [[NSMutableArray alloc] initWithCapacity:preChosenTags.count];
+    
+    [allTags enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        PARTag *tag = [[PARTag alloc] initWithText: obj];
+        [allTagsCreated addObject:tag];
+        
+    }];
+    
+    [preChosenTags enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        PARTag *tag = [[PARTag alloc] initWithText: obj];
+        [allTagsPreChosen addObject:tag];
+    }];
+    
+    self.allTags = allTagsCreated;
+    self.preChosenTags = allTagsPreChosen;
+    
 }
 
 - (void)addTagPickerToView {
@@ -39,11 +62,10 @@
     self.tagPicker.view.frame = CGRectMake(0, 20, CGRectGetWidth(self.view.bounds), COLLECTION_VIEW_HEIGHT); //78 is the fully expanded height.
     self.tagPicker.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.tagPicker.delegate = self;
-    self.tagPicker.dataSource = self;
     self.tagPicker.allTags = self.allTags;
     
     //optionally allow new tags to be made
-    //self.tagPicker.allowsNewTags = YES;
+    self.tagPicker.allowsNewTags = YES;
     
     //optionally set some chosen tags
     //self.tagPicker.chosenTags = [self.preChosenTags mutableCopy];
@@ -87,44 +109,6 @@
     
     //self.tagPicker.tagColorRef = myColors;
 }*/
-
-#pragma mark - PARTagPickerDataSource
-    
-- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagBackgroundColorForIndex:(NSIndexPath *) index {
-    return [UIColor purpleColor];
-}
-    
-- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagBorderColorForIndex:(NSIndexPath *) index{
-    return [UIColor blueColor];
-}
-    
-- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker chosenTagTextColorForIndex:(NSIndexPath *) index{
-    return [UIColor whiteColor];
-}
-    
-- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagTextColorForIndex:(NSIndexPath *) index{
-    return [UIColor blackColor];
-}
-    
-- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagBackgroundColorForIndex:(NSIndexPath *) index{
-    return [UIColor orangeColor];
-}
-
-- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker defaultTagBorderColorForIndex:(NSIndexPath *) index{
-    return [UIColor greenColor];
-}
-
-- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagTextColorForIndex:(NSIndexPath *) index{
-    return [UIColor blackColor];
-}
-    
-- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagBackgroundColorForIndex:(NSIndexPath *) index{
-    return [UIColor yellowColor];
-}
-    
-- (UIColor *) tagPicker:(PARTagPickerViewController *)tagPicker highlightedTagBorderColorForIndex:(NSIndexPath *) index{
-    return [UIColor magentaColor];
-}
     
 #pragma mark - PARTagPickerDelegate
 - (void)tagPicker:(PARTagPickerViewController *)tagPicker visibilityChangedToState:(PARTagPickerVisibilityState)state {

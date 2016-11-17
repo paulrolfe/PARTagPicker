@@ -10,7 +10,7 @@
 #import "PARTagCollectionViewCell.h"
 #import "PARTextFieldCollectionViewCell.h"
 #import "PARBackspaceTextField.h"
-#import "NSString+PARStrings.h"
+#import "PARTag+Comparison.h"
 #import "PARTagColorReference.h"
 #import "UIView+NibInitable.h"
 
@@ -100,9 +100,9 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
         self.chosenTags = [NSMutableArray array];
     }
     for (int i = 0; i < self.chosenTags.count; i++) {
-        NSString *tag = self.chosenTags[i];
+        PARTag *tag = self.chosenTags[i];
         [self.chosenTags removeObject:tag];
-        NSString *similarTag = [tag similarStringFromArray:self.allTags];
+        PARTag *similarTag = [tag similarStringFromArray:self.allTags];
         if (similarTag) {
             [self.chosenTags insertObject:similarTag atIndex:i];
         }
@@ -146,7 +146,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 #pragma mark - Tag Filtering
 
 - (void)filterTagsFromSearchString {
-    NSSortDescriptor * sortDesc = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:NO];
+    NSSortDescriptor * sortDesc = [NSSortDescriptor sortDescriptorWithKey:@"self.text" ascending:NO];
     [self.availableTags sortUsingDescriptors:@[sortDesc]];
     
     if (!self.searchString || [self.searchString isEqualToString:@""]){
@@ -155,14 +155,14 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
         return;
     }
     
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"self contains[cd] %@",self.searchString];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"self.text contains[cd] %@",self.searchString];
     self.filteredAvailableTags = [self.availableTags filteredArrayUsingPredicate:pred];
     
     [self.availableTagCollectionView reloadData];
 }
 
-- (NSString *)tagSimilarToTag:(NSString *)tag {
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"self LIKE %@", tag];
+- (PARTag *)tagSimilarToTag:(NSString *)tag {
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"self.text LIKE %@", tag];
     NSArray *similarTags = [self.availableTags filteredArrayUsingPredicate:pred];
     return similarTags.firstObject;
 }
@@ -233,7 +233,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 
 - (void)removeChosenTagFromIndexPath:(NSIndexPath *)indexPath {
     if ([self.chosenTags count] > indexPath.row) {
-        NSString *selectedTag = [self.chosenTags objectAtIndex:indexPath.row];
+        PARTag *selectedTag = [self.chosenTags objectAtIndex:indexPath.row];
         if ([self.allTags containsObject:selectedTag]) {
             [self.availableTags addObject:selectedTag];
             [self.availableTagCollectionView reloadData];
@@ -250,7 +250,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 }
 
 - (void)addChosenTagFromIndexPath:(NSIndexPath *)indexPath {
-    NSString *selectedTag = self.filteredAvailableTags[indexPath.row];
+    PARTag *selectedTag = self.filteredAvailableTags[indexPath.row];
     NSIndexPath *addedPath = [NSIndexPath indexPathForItem:self.chosenTags.count inSection:0];
     [self.chosenTags addObject:selectedTag];
     [self.availableTags removeObject:selectedTag];
@@ -283,6 +283,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
         textFieldCell.tagTextField.backspaceDelegate = self;
         textFieldCell.tagTextField.text = @"";
         textFieldCell.tagTextField.textColor = self.textfieldRegularTextColor;
+        
         if (self.textfieldCursorColor) {
             textFieldCell.tagTextField.tintColor = self.textfieldCursorColor;
         }
@@ -297,23 +298,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
         PARTagCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PARTagCollectionViewCellIdentifier forIndexPath:indexPath];
         //cell.tagColorRef = self.tagColorRef;
         
-        PARTagColorReference *color = [PARTagColorReference new];
-        color.chosenTagTextColor = [self.dataSource tagPicker:self chosenTagTextColorForIndex:indexPath];
-        color.chosenTagBorderColor = [self.dataSource tagPicker:self chosenTagBorderColorForIndex:indexPath];
-        color.chosenTagBackgroundColor = [self.dataSource tagPicker:self chosenTagBackgroundColorForIndex:indexPath];
-        
-        color.highlightedTagTextColor = [self.dataSource tagPicker:self highlightedTagTextColorForIndex:indexPath];
-        color.highlightedTagBorderColor = [self.dataSource tagPicker:self highlightedTagBorderColorForIndex:indexPath];
-        color.highlightedTagBackgroundColor = [self.dataSource tagPicker:self highlightedTagBackgroundColorForIndex:indexPath];
-        
-        color.defaultTagTextColor = [self.dataSource tagPicker:self defaultTagTextColorForIndex:indexPath];
-        color.defaultTagBorderColor = [self.dataSource tagPicker:self defaultTagBorderColorForIndex:indexPath];
-        color.defaultTagBackgroundColor = [self.dataSource tagPicker:self defaultTagBackgroundColorForIndex:indexPath];
-        
-        
-        cell.tagColorRef = color;
-        
-        NSString *tag;
+        PARTag *tag;
         if (collectionView == self.availableTagCollectionView) {
             tag = self.filteredAvailableTags[indexPath.row];
             [cell showAsChosen:NO];
@@ -321,7 +306,8 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
             tag = self.chosenTags[indexPath.row];
             [cell showAsChosen:YES];
         }
-        cell.tagLabel.text = tag;
+        cell.tagLabel.text = tag.text;
+        cell.tagColorRef = tag.colorReference;
         if (self.font) {
             cell.tagLabel.font = self.font;
         }
@@ -340,13 +326,14 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
         if (!sizingCell) {
             sizingCell = [[PARTagCollectionViewCell alloc] initWithNibNamed:nil];
         }
-        NSString *tag;
+        PARTag *tag;
         if (collectionView == self.availableTagCollectionView && indexPath.row < self.filteredAvailableTags.count) {
             tag = self.filteredAvailableTags[indexPath.row];
         } else if (collectionView == self.chosenTagCollectionView && indexPath.row < self.chosenTags.count) {
             tag = self.chosenTags[indexPath.row];
         }
-        sizingCell.tagLabel.text = tag;
+        sizingCell.tagLabel.text = tag.text;
+        sizingCell.tagColorRef = tag.colorReference;
         sizingCell.tagLabel.font = self.font;
         CGSize size = [sizingCell systemLayoutSizeFittingSize:CGSizeMake(collectionView.contentSize.width, TAGCOLLECTION_CELL_HEIGHT) withHorizontalFittingPriority:UILayoutPriorityDefaultLow verticalFittingPriority:UILayoutPriorityDefaultHigh];
         return size;
@@ -401,13 +388,16 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
         cell.tagTextField.placeholder = self.placeholderText;
         
         if (self.allowsNewTags) {
-            NSString *possibleMatch = [self tagSimilarToTag:tag];
+            PARTag *possibleMatch = [self tagSimilarToTag:tag];
             if (possibleMatch) {
                 NSInteger whereItIs = [self.filteredAvailableTags indexOfObject:possibleMatch];
                 NSIndexPath *pathOfIt = [NSIndexPath indexPathForItem:whereItIs inSection:0];
                 [self addChosenTagFromIndexPath:pathOfIt];
             } else {
-                [self.chosenTags addObject:tag];
+                
+                PARTag *newTag = [[PARTag alloc] initWithText:tag];
+                
+                [self.chosenTags addObject:newTag];
                 NSIndexPath *pathToMake = [NSIndexPath indexPathForItem:self.chosenTags.count - 1 inSection:0];
                 [self.chosenTagCollectionView insertItemsAtIndexPaths:@[pathToMake]];
                 if ([self.delegate respondsToSelector:@selector(chosenTagsWereUpdatedInTagPicker:)]) {
