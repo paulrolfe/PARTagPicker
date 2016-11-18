@@ -219,7 +219,8 @@
 				519194581DDF579D009EB028 /* PARTagGlobalConfiguration.h */,
 				519194591DDF579D009EB028 /* PARTagGlobalConfiguration.m */,
 			);
-			path = Configuration;
+			name = Configuration;
+			path = Classes/Configuration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
