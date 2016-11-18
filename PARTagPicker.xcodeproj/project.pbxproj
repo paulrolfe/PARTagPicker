@@ -25,6 +25,7 @@
 		1CF87F091B5EED0E0007165E /* PARTagPickerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF87F081B5EED0E0007165E /* PARTagPickerTests.m */; };
 		5156B2ED1DDDCAB000E6D8B8 /* PARTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 5156B2EC1DDDCAB000E6D8B8 /* PARTag.m */; };
 		5156B2F01DDDD09C00E6D8B8 /* PARTag+Comparison.m in Sources */ = {isa = PBXBuildFile; fileRef = 5156B2EF1DDDD09C00E6D8B8 /* PARTag+Comparison.m */; };
+		5191945A1DDF579D009EB028 /* PARTagGlobalConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 519194591DDF579D009EB028 /* PARTagGlobalConfiguration.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		5156B2EC1DDDCAB000E6D8B8 /* PARTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PARTag.m; sourceTree = "<group>"; };
 		5156B2EE1DDDD09C00E6D8B8 /* PARTag+Comparison.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PARTag+Comparison.h"; path = "Classes/Tag/PARTag+Comparison.h"; sourceTree = "<group>"; };
 		5156B2EF1DDDD09C00E6D8B8 /* PARTag+Comparison.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PARTag+Comparison.m"; path = "Classes/Tag/PARTag+Comparison.m"; sourceTree = "<group>"; };
+		519194581DDF579D009EB028 /* PARTagGlobalConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARTagGlobalConfiguration.h; sourceTree = "<group>"; };
+		519194591DDF579D009EB028 /* PARTagGlobalConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PARTagGlobalConfiguration.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +156,7 @@
 		1CF87F211B5EEDA30007165E /* PARTagPicker */ = {
 			isa = PBXGroup;
 			children = (
+				519194571DDF5781009EB028 /* Configuration */,
 				5156B2EA1DDDCA7A00E6D8B8 /* Tag */,
 				1C8102C71B6A998500AC87B3 /* PARTagPickerViewController.h */,
 				1C8102C81B6A998500AC87B3 /* PARTagPickerViewController.m */,
@@ -207,6 +211,15 @@
 			);
 			name = Tag;
 			path = Classes/Tag;
+			sourceTree = "<group>";
+		};
+		519194571DDF5781009EB028 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				519194581DDF579D009EB028 /* PARTagGlobalConfiguration.h */,
+				519194591DDF579D009EB028 /* PARTagGlobalConfiguration.m */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,6 +328,7 @@
 			files = (
 				1C8102E11B6A99B700AC87B3 /* UIView+NibInitable.m in Sources */,
 				1C8102DB1B6A99AA00AC87B3 /* PARTagColorReference.m in Sources */,
+				5191945A1DDF579D009EB028 /* PARTagGlobalConfiguration.m in Sources */,
 				1C8102D71B6A999C00AC87B3 /* PARTextFieldCollectionViewCell.m in Sources */,
 				5156B2F01DDDD09C00E6D8B8 /* PARTag+Comparison.m in Sources */,
 				1C8102D41B6A999C00AC87B3 /* PARBackspaceTextField.m in Sources */,

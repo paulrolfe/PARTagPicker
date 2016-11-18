@@ -10,6 +10,7 @@
 #import "PARTagPickerViewController.h"
 #import "PARTagColorReference.h"
 #import "PARTag.h"
+#import "PARTagGlobalConfiguration.h"
 
 @interface ViewController () <PARTagPickerDelegate>
 
@@ -39,7 +40,7 @@
     NSMutableArray<PARTag *> *allTagsCreated = [[NSMutableArray alloc] initWithCapacity:allTags.count];
     NSMutableArray<PARTag *> *allTagsPreChosen = [[NSMutableArray alloc] initWithCapacity:preChosenTags.count];
     
-    __weak ViewController *weakSelf = self;
+    //__weak ViewController *weakSelf = self;
     
     [allTags enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
@@ -67,6 +68,9 @@
 }
 
 - (void)addTagPickerToView {
+    
+    [PARTagGlobalConfiguration sharedManager].cornerRadius = 2.0;
+    
     self.tagPicker = [[PARTagPickerViewController alloc] init];
     self.tagPicker.view.backgroundColor = [UIColor darkGrayColor];
     self.tagPicker.view.frame = CGRectMake(0, 20, CGRectGetWidth(self.view.bounds), COLLECTION_VIEW_HEIGHT); //78 is the fully expanded height.
