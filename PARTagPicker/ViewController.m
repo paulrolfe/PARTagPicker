@@ -30,37 +30,30 @@
 }
 
 - (void)initDummyData {
-    //Data for demo project
-    /*self.allTags = @[@"one fish", @"two fish", @"red fish", @"blue fish", @"the cat in the hat", @"Seuss"];
-    self.preChosenTags = @[@"in a box", @"with a fox", @"thing 1", @"thing 2"];*/
     
-    NSArray *allTags = @[@"one fish", @"two fish", @"red fish", @"blue fish", @"the cat in the hat", @"Seuss"];
-    NSArray *preChosenTags = @[@"in a box", @"with a fox", @"thing 1", @"thing 2"];
-    
+    NSArray *allTags = @[@"one fish", @"two fish", @"red fish", @"blue fish", @"the cat in the hat", @"Seuss", @"in a box", @"with a fox", @"thing 1", @"thing 2"];
+
     NSMutableArray<PARTag *> *allTagsCreated = [[NSMutableArray alloc] initWithCapacity:allTags.count];
-    NSMutableArray<PARTag *> *allTagsPreChosen = [[NSMutableArray alloc] initWithCapacity:preChosenTags.count];
+    NSMutableArray<PARTag *> *allTagsPreChosen = [NSMutableArray new];
     
-    //__weak ViewController *weakSelf = self;
+    __weak ViewController *weakSelf = self;
     
     [allTags enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        //PARTag *tag = [[PARTag alloc] initWithText:obj];
-        PARTag *tag = [[PARTag alloc] init:[[NSUUID UUID] UUIDString] withText:obj];
+        if (idx == 2){
+            PARTag *tag = [[PARTag alloc] init:[[NSUUID UUID] UUIDString] withText:obj andColorReference: [weakSelf useCustomColors]];
+            [allTagsCreated addObject:tag];
+        } else {
+            PARTag *tag = [[PARTag alloc] init:[[NSUUID UUID] UUIDString] withText:obj]; // Add andColorReference: [weakSelf useCustomColors] for a custom COlor scheme for the tag
+            [allTagsCreated addObject:tag];
+        }
         
-        // Each color can have it's own color scheme
-        //PARTag *tag = [[PARTag alloc] initWithText: obj andColorReference: [weakSelf useCustomColors]];
-        [allTagsCreated addObject:tag];
         
     }];
     
-    [preChosenTags enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        //PARTag *tag = [[PARTag alloc] initWithText:obj];
-        PARTag *tag = [[PARTag alloc] init:[[NSUUID UUID] UUIDString] withText:obj];
-        
-        // Each color can have it's own color scheme
-        //PARTag *tag = [[PARTag alloc] initWithText: obj andColorReference: [weakSelf useCustomColors]];
-        [allTagsPreChosen addObject:tag];
-    }];
+    [allTagsPreChosen insertObject:allTagsCreated[0] atIndex:0];
+    [allTagsPreChosen insertObject:allTagsCreated[2] atIndex:1];
+    [allTagsPreChosen insertObject:allTagsCreated[3] atIndex:2];
     
     self.allTags = allTagsCreated;
     self.preChosenTags = allTagsPreChosen;
@@ -71,7 +64,7 @@
     
     [PARTagGlobalConfiguration sharedManager].cornerRadius = 2.0;
     
-    self.tagPicker = [[PARTagPickerViewController alloc] init];
+    self.tagPicker = [PARTagPickerViewController new];
     self.tagPicker.view.backgroundColor = [UIColor darkGrayColor];
     self.tagPicker.view.frame = CGRectMake(0, 20, CGRectGetWidth(self.view.bounds), COLLECTION_VIEW_HEIGHT); //78 is the fully expanded height.
     self.tagPicker.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;

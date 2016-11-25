@@ -23,6 +23,7 @@
 		1CF87EFA1B5EED0E0007165E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CF87EF91B5EED0E0007165E /* Images.xcassets */; };
 		1CF87EFD1B5EED0E0007165E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CF87EFB1B5EED0E0007165E /* LaunchScreen.xib */; };
 		1CF87F091B5EED0E0007165E /* PARTagPickerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CF87F081B5EED0E0007165E /* PARTagPickerTests.m */; };
+		510BD6271DE8650000CBD7F9 /* PARTag+Approximate.m in Sources */ = {isa = PBXBuildFile; fileRef = 510BD6261DE8650000CBD7F9 /* PARTag+Approximate.m */; };
 		5156B2ED1DDDCAB000E6D8B8 /* PARTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 5156B2EC1DDDCAB000E6D8B8 /* PARTag.m */; };
 		5156B2F01DDDD09C00E6D8B8 /* PARTag+Comparison.m in Sources */ = {isa = PBXBuildFile; fileRef = 5156B2EF1DDDD09C00E6D8B8 /* PARTag+Comparison.m */; };
 		5191945A1DDF579D009EB028 /* PARTagGlobalConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 519194591DDF579D009EB028 /* PARTagGlobalConfiguration.m */; };
@@ -67,10 +68,12 @@
 		1CF87F021B5EED0E0007165E /* PARTagPickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PARTagPickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CF87F071B5EED0E0007165E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1CF87F081B5EED0E0007165E /* PARTagPickerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PARTagPickerTests.m; sourceTree = "<group>"; };
+		510BD6251DE8650000CBD7F9 /* PARTag+Approximate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PARTag+Approximate.h"; sourceTree = "<group>"; };
+		510BD6261DE8650000CBD7F9 /* PARTag+Approximate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PARTag+Approximate.m"; sourceTree = "<group>"; };
 		5156B2EB1DDDCAB000E6D8B8 /* PARTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARTag.h; sourceTree = "<group>"; };
 		5156B2EC1DDDCAB000E6D8B8 /* PARTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PARTag.m; sourceTree = "<group>"; };
-		5156B2EE1DDDD09C00E6D8B8 /* PARTag+Comparison.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "PARTag+Comparison.h"; path = "Classes/Tag/PARTag+Comparison.h"; sourceTree = "<group>"; };
-		5156B2EF1DDDD09C00E6D8B8 /* PARTag+Comparison.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "PARTag+Comparison.m"; path = "Classes/Tag/PARTag+Comparison.m"; sourceTree = "<group>"; };
+		5156B2EE1DDDD09C00E6D8B8 /* PARTag+Comparison.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PARTag+Comparison.h"; sourceTree = "<group>"; };
+		5156B2EF1DDDD09C00E6D8B8 /* PARTag+Comparison.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PARTag+Comparison.m"; sourceTree = "<group>"; };
 		519194581DDF579D009EB028 /* PARTagGlobalConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PARTagGlobalConfiguration.h; sourceTree = "<group>"; };
 		519194591DDF579D009EB028 /* PARTagGlobalConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PARTagGlobalConfiguration.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -171,8 +174,6 @@
 		1CF87F311B5FBFE20007165E /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				5156B2EE1DDDD09C00E6D8B8 /* PARTag+Comparison.h */,
-				5156B2EF1DDDD09C00E6D8B8 /* PARTag+Comparison.m */,
 				1C8102DE1B6A99B700AC87B3 /* UIView+NibInitable.h */,
 				1C8102DF1B6A99B700AC87B3 /* UIView+NibInitable.m */,
 			);
@@ -208,6 +209,10 @@
 			children = (
 				5156B2EB1DDDCAB000E6D8B8 /* PARTag.h */,
 				5156B2EC1DDDCAB000E6D8B8 /* PARTag.m */,
+				5156B2EE1DDDD09C00E6D8B8 /* PARTag+Comparison.h */,
+				5156B2EF1DDDD09C00E6D8B8 /* PARTag+Comparison.m */,
+				510BD6251DE8650000CBD7F9 /* PARTag+Approximate.h */,
+				510BD6261DE8650000CBD7F9 /* PARTag+Approximate.m */,
 			);
 			name = Tag;
 			path = Classes/Tag;
@@ -331,6 +336,7 @@
 				1C8102DB1B6A99AA00AC87B3 /* PARTagColorReference.m in Sources */,
 				5191945A1DDF579D009EB028 /* PARTagGlobalConfiguration.m in Sources */,
 				1C8102D71B6A999C00AC87B3 /* PARTextFieldCollectionViewCell.m in Sources */,
+				510BD6271DE8650000CBD7F9 /* PARTag+Approximate.m in Sources */,
 				5156B2F01DDDD09C00E6D8B8 /* PARTag+Comparison.m in Sources */,
 				1C8102D41B6A999C00AC87B3 /* PARBackspaceTextField.m in Sources */,
 				1C8102CA1B6A998500AC87B3 /* PARTagPickerViewController.m in Sources */,

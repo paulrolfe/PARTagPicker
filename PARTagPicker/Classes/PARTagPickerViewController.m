@@ -22,8 +22,8 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 
 @interface PARTagPickerViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, PARBackspaceTextFieldDelegate, PARTagCollectionViewCellDelegate, PARTextFieldCollectionViewCellDelegate>
 
-@property (nonatomic, strong) NSMutableArray *availableTags;
-@property (nonatomic, strong) NSArray *filteredAvailableTags;
+@property (nonatomic, strong) NSMutableArray<PARTag *> * availableTags;
+@property (nonatomic, strong) NSArray<PARTag *> * filteredAvailableTags;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *chosenTagCollectionView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *chosenTagCollectionViewHeightConstraint;
@@ -59,7 +59,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupCollectionViews];
-    self.chosenTags = [NSMutableArray array];
+    self.chosenTags = [NSMutableArray<PARTag *> new]; //[NSMutableArray array];
     self.visibilityState = PARTagPickerVisibilityStateTopOnly;
 }
 
@@ -78,7 +78,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 
 #pragma mark - Setters
 
-- (void)setAllTags:(NSArray *)allTags {
+- (void)setAllTags:(NSArray<PARTag *> *)allTags {
     _allTags = allTags;
     self.availableTags = [allTags mutableCopy];
     [self transferChosenTagsWithNewAllTags];
@@ -86,7 +86,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     [self filterTagsFromSearchString];
 }
 
-- (void)setChosenTags:(NSMutableArray *)chosenTags {
+- (void)setChosenTags:(NSMutableArray<PARTag *> *)chosenTags {
     _chosenTags = chosenTags;
     [self.chosenTagCollectionView reloadData];
     self.availableTags = [self.allTags mutableCopy];
@@ -97,12 +97,12 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 - (void)transferChosenTagsWithNewAllTags {
     //have to loop through like this, because enumeration is clashing with mutating the array.
     if (!self.chosenTags) {
-        self.chosenTags = [NSMutableArray array];
+        self.chosenTags = [NSMutableArray<PARTag *> new];//[NSMutableArray array];
     }
     for (int i = 0; i < self.chosenTags.count; i++) {
         PARTag *tag = self.chosenTags[i];
         [self.chosenTags removeObject:tag];
-        PARTag *similarTag = [tag similarStringFromArray:self.allTags];
+        PARTag *similarTag = [tag similarTagFromArray:self.allTags];
         if (similarTag) {
             [self.chosenTags insertObject:similarTag atIndex:i];
         }
@@ -163,7 +163,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 
 - (PARTag *)tagSimilarToTag:(NSString *)tag {
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"self.text LIKE %@", tag];
-    NSArray *similarTags = [self.availableTags filteredArrayUsingPredicate:pred];
+    NSArray<PARTag *> *similarTags = [self.availableTags filteredArrayUsingPredicate:pred];
     return similarTags.firstObject;
 }
 
@@ -430,7 +430,8 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
                 }
             }
         } else {
-            NSString *firstTag = self.filteredAvailableTags.firstObject;
+            //NSString *firstTag = self.filteredAvailableTags.firstObject;
+            PARTag *firstTag = self.filteredAvailableTags.firstObject;
             if (firstTag) {
                 NSIndexPath *removedPath = [NSIndexPath indexPathForItem:0 inSection:0];
                 [self addChosenTagFromIndexPath:removedPath];

@@ -34,6 +34,7 @@
     
 }
 
+
 - (instancetype) init:(NSString *) tagID withText:(NSString *)text andColorReference:(PARTagColorReference *) colorReference{
     
     self = [super init];

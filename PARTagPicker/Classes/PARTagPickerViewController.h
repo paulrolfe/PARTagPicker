@@ -47,12 +47,12 @@ typedef NS_ENUM(NSUInteger, PARTagPickerVisibilityState) {
 @interface PARTagPickerViewController : UIViewController
 
 /**
- *  Array of strings.
+ *  Array of tags.
  */
 @property (nonatomic, strong) NSArray<PARTag *> *allTags;
 
 /**
- *  Array of strings.
+ *  Array of tags.
  */
 @property (nonatomic, strong) NSMutableArray<PARTag *> *chosenTags;
 
