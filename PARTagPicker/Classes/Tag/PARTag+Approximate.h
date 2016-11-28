@@ -10,4 +10,6 @@
 
 @interface PARTag (Approximate)
 
+- (BOOL)isEqual:(PARTag *)other;
+
 @end

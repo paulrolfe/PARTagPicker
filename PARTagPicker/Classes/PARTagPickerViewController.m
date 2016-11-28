@@ -94,6 +94,54 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     [self filterTagsFromSearchString];
 }
 
+- (void) resetAllTags: (NSArray<PARTag *> *) allTags andAllChosenTags: (NSMutableArray<PARTag *> *) allChosenTags{
+    
+    if (allTags && allTags.count != 0){
+        _allTags = allTags;
+    } else {
+        _allTags = [NSArray<PARTag *> new];
+    }
+    
+    // COnversion from Swift will result in a "_EmptyArrayStorage" resulting in issues, so I'll need to validate beforehand
+    if (allChosenTags && allChosenTags.count != 0){
+        _chosenTags = [allChosenTags mutableCopy];
+    } else {
+        _chosenTags = [NSMutableArray<PARTag *> new];
+    }
+    
+    [self.chosenTagCollectionView reloadData];
+    
+    //self.availableTags = [self.allTags mutableCopy];
+    //[self transferChosenTagsWithNewAllTags];
+    
+    // For some reason this will return invalid (and random) results
+    //[self.availableTags removeObjectsInArray: self.chosenTags];
+    self.availableTags = [NSMutableArray<PARTag *> new];
+    
+    __weak PARTagPickerViewController *weakSelf = self;
+    
+    [self.allTags enumerateObjectsUsingBlock:^(PARTag * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+       
+        BOOL found = NO;
+        for (int i = 0; i < allChosenTags.count; i++) {
+            
+            if (obj.tagID == allChosenTags[i].tagID){
+                found = YES;
+                break;
+            }
+        }
+        
+        if (!found){
+            [weakSelf.availableTags addObject: obj];
+        }
+        
+    }];
+    
+    [self transferChosenTagsWithNewAllTags];
+    //[self.availableTags removeObjectsInArray:self.chosenTags];
+    [self filterTagsFromSearchString];
+}
+
 - (void)transferChosenTagsWithNewAllTags {
     //have to loop through like this, because enumeration is clashing with mutating the array.
     if (!self.chosenTags) {
@@ -151,12 +199,12 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     
     if (!self.searchString || [self.searchString isEqualToString:@""]){
         self.filteredAvailableTags = self.availableTags;
-        [self.availableTagCollectionView reloadData];
-        return;
+        /*[self.availableTagCollectionView reloadData];
+        return;*/
+    } else {
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"self.text contains[cd] %@",self.searchString];
+        self.filteredAvailableTags = [self.availableTags filteredArrayUsingPredicate:pred];
     }
-    
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"self.text contains[cd] %@",self.searchString];
-    self.filteredAvailableTags = [self.availableTags filteredArrayUsingPredicate:pred];
     
     [self.availableTagCollectionView reloadData];
 }
@@ -462,6 +510,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     if (!active && [self.chosenTagCollectionView indexPathsForSelectedItems].count > 0) {
         return;
     }
+    
     if (active) {
         [self setVisibilityState:PARTagPickerVisibilityStateTopAndBottom];
     } else if (self.visibilityState != PARTagPickerVisibilityStateHidden) {

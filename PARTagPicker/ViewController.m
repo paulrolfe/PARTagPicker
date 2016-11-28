@@ -18,6 +18,9 @@
 @property (nonatomic, strong) NSArray *allTags;
 @property (nonatomic, strong) NSArray *preChosenTags;
 
+@property (nonatomic, strong) NSMutableArray<PARTag *> *allTagsCreated;
+@property (nonatomic, strong) NSMutableArray<PARTag *> *allTagsPreChosen;
+
 
 @end
 
@@ -33,8 +36,9 @@
     
     NSArray *allTags = @[@"one fish", @"two fish", @"red fish", @"blue fish", @"the cat in the hat", @"Seuss", @"in a box", @"with a fox", @"thing 1", @"thing 2"];
 
-    NSMutableArray<PARTag *> *allTagsCreated = [[NSMutableArray alloc] initWithCapacity:allTags.count];
-    NSMutableArray<PARTag *> *allTagsPreChosen = [NSMutableArray new];
+    _allTagsCreated = [[NSMutableArray alloc] initWithCapacity:allTags.count];
+    _allTagsPreChosen
+    = [NSMutableArray new];
     
     __weak ViewController *weakSelf = self;
     
@@ -42,21 +46,21 @@
         
         if (idx == 2){
             PARTag *tag = [[PARTag alloc] init:[[NSUUID UUID] UUIDString] withText:obj andColorReference: [weakSelf useCustomColors]];
-            [allTagsCreated addObject:tag];
+            [_allTagsCreated addObject:tag];
         } else {
             PARTag *tag = [[PARTag alloc] init:[[NSUUID UUID] UUIDString] withText:obj]; // Add andColorReference: [weakSelf useCustomColors] for a custom COlor scheme for the tag
-            [allTagsCreated addObject:tag];
+            [_allTagsCreated addObject:tag];
         }
         
         
     }];
     
-    [allTagsPreChosen insertObject:allTagsCreated[0] atIndex:0];
-    [allTagsPreChosen insertObject:allTagsCreated[2] atIndex:1];
-    [allTagsPreChosen insertObject:allTagsCreated[3] atIndex:2];
+    [_allTagsPreChosen insertObject:_allTagsCreated[0] atIndex:0];
+    [_allTagsPreChosen insertObject:_allTagsCreated[2] atIndex:1];
+    [_allTagsPreChosen insertObject:_allTagsCreated[3] atIndex:2];
     
-    self.allTags = allTagsCreated;
-    self.preChosenTags = allTagsPreChosen;
+    self.allTags = _allTagsCreated;
+    self.preChosenTags = _allTagsPreChosen;
     
 }
 
@@ -159,5 +163,12 @@
 - (IBAction)clearAll:(id)sender {
     [_tagPicker setChosenTags:[@[] mutableCopy]];
 }
+
+- (IBAction)setRandom:(id)sender {
+    /*self.allTags = _allTagsCreated;
+    self.preChosenTags = _allTagsPreChosen;*/
+    [_tagPicker setChosenTags: [self.preChosenTags mutableCopy]];
+}
+
 
 @end

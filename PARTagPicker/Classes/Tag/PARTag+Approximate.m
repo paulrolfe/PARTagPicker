@@ -17,7 +17,7 @@
     } /*else if (![super isEqual:other]) {
         return NO;
     }*/ else {
-        return self.tagID == other.tagID;
+        return [self.tagID isEqualToString:other.tagID];
     }
 }
 
