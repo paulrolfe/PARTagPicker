@@ -47,12 +47,21 @@ typedef NS_ENUM(NSUInteger, PARTagPickerVisibilityState) {
 @interface PARTagPickerViewController : UIViewController
 
 /**
- *  Array of strings.
+ *  Resets both allTags and allChosenTags.
+ *   This is necesssary for the cases where both need to be reset. If individually set both values then the setter for allTags will filter based on chosen tags but the chosenTags value is not set yet. If reverse order the same issue.
+ *
+ *  @param allTags All tags
+ *  @param andAllChosenTags Chosen tags to be reset
+ */
+- (void) resetAllTags: (NSArray<PARTag *> *) allTags andAllChosenTags: (NSArray<PARTag *> *) allChosenTags;
+
+/**
+ *  Array of tags.
  */
 @property (nonatomic, strong) NSArray<PARTag *> *allTags;
 
 /**
- *  Array of strings.
+ *  Array of tags.
  */
 @property (nonatomic, strong) NSMutableArray<PARTag *> *chosenTags;
 

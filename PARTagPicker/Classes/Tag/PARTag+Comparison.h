@@ -10,6 +10,6 @@
 
 @interface PARTag (Comparison)
 
-- (PARTag *)similarStringFromArray:(NSArray<PARTag *> *)strings;
+- (PARTag *)similarTagFromArray:(NSArray<PARTag *> *)tags;
 
 @end

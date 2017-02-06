@@ -10,10 +10,20 @@
 
 @implementation PARTag (Comparison)
 
-- (PARTag *)similarStringFromArray:(NSArray<PARTag *> *)strings{
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"self LIKE %@", self];
+- (PARTag *)similarTagFromArray:(NSArray<PARTag *> *)tags{
+    /*NSPredicate *pred = [NSPredicate predicateWithFormat:@"self LIKE %@", self];
     NSArray *similarStrings = [strings filteredArrayUsingPredicate:pred];
-    return similarStrings.firstObject;
+    return similarStrings.firstObject;*/
+    
+    for (int i = 0; i< tags.count ; i++){
+    
+        if (tags[i].tagID == self.tagID){
+            return tags[i];
+        }
+        
+    }
+    
+    return nil;
 }
 
 @end
