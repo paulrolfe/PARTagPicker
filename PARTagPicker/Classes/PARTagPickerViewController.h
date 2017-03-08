@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PARTag.h"
 
 @class PARTagPickerViewController, PARTagColorReference;
 
@@ -17,6 +18,7 @@ typedef NS_ENUM(NSUInteger, PARTagPickerVisibilityState) {
     PARTagPickerVisibilityStateTopAndBottom,
     PARTagPickerVisibilityStateTopOnly,
 };
+
 
 @protocol PARTagPickerDelegate <NSObject>
 
@@ -52,14 +54,23 @@ typedef NS_ENUM(NSUInteger, PARTagPickerVisibilityState) {
 @interface PARTagPickerViewController : UIViewController
 
 /**
- *  Array of strings.
+ *  Resets both allTags and allChosenTags.
+ *   This is necesssary for the cases where both need to be reset. If individually set both values then the setter for allTags will filter based on chosen tags but the chosenTags value is not set yet. If reverse order the same issue.
+ *
+ *  @param allTags All tags
+ *  @param andAllChosenTags Chosen tags to be reset
  */
-@property (nonatomic, strong) NSArray *allTags;
+- (void) resetAllTags: (NSArray<PARTag *> *) allTags andAllChosenTags: (NSArray<PARTag *> *) allChosenTags;
 
 /**
- *  Array of strings.
+ *  Array of tags.
  */
-@property (nonatomic, strong) NSMutableArray *chosenTags;
+@property (nonatomic, strong) NSArray<PARTag *> *allTags;
+
+/**
+ *  Array of tags.
+ */
+@property (nonatomic, strong) NSMutableArray<PARTag *> *chosenTags;
 
 /**
  *  Boolean that determines if user is allowed to type in a new tag, and add it to the chosenTags array by hitting return.
@@ -72,6 +83,7 @@ typedef NS_ENUM(NSUInteger, PARTagPickerVisibilityState) {
 @property (nonatomic) PARTagPickerVisibilityState visibilityState;
 
 @property (nonatomic, weak) id<PARTagPickerDelegate> delegate;
+    
 
 //TODO: conform to UIAppearance
 

@@ -31,7 +31,9 @@ Include `#import <PARTagPicker/PARTagPickerViewController.h>`.
 
 The basic setup is to create an instance of `PARTagPickerViewController`, add it's view, and then add the controller as a child view controller.
 
-The tags are passed in as `NSString` objects in an array. Anytime you change the `allTags` array, any existing `chosenTags` are updated to use references to the new strings if they contain a match in the updated array. Otherwise they continue to point to the old strings.
+The tags are passed in as `PARTag` objects in an array. Anytime you change the `allTags` array, any existing `chosenTags` are updated to use references to the new objects if they contain a match in the updated array. Otherwise they continue to point to the old objects.
+
+The `PARTag` objects allows to configure the color for each of the tags (colorReference), but a global configuration can be defined for all remaining cases. If none is provided then a default configuration is used.
 
 ## Options
 * You can customize colors using a PARTagColorReference object.

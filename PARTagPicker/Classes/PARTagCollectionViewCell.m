@@ -9,6 +9,7 @@
 #import "PARTagCollectionViewCell.h"
 #import "PARBackspaceTextField.h"
 #import "PARTagColorReference.h"
+#import "PARTagGlobalConfiguration.h"
 
 @interface PARTagCollectionViewCell ()
 
@@ -18,8 +19,14 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.layer.cornerRadius = CGRectGetHeight(self.bounds) / 2;
-    self.layer.borderWidth = 2;
+    
+    if ( [[PARTagGlobalConfiguration sharedManager] cornerRadius] ){
+        self.layer.cornerRadius = [[PARTagGlobalConfiguration sharedManager] cornerRadius];
+    } else {
+        self.layer.cornerRadius = CGRectGetHeight(self.bounds) / 2;
+    }
+    
+    self.layer.borderWidth = [[PARTagGlobalConfiguration sharedManager] borderWidth];
     self.selected = NO;
 }
 

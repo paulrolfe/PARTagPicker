@@ -9,12 +9,17 @@
 #import "ViewController.h"
 #import "PARTagPickerViewController.h"
 #import "PARTagColorReference.h"
+#import "PARTag.h"
+#import "PARTagGlobalConfiguration.h"
 
 @interface ViewController () <PARTagPickerDelegate>
 
 @property (nonatomic, strong) PARTagPickerViewController *tagPicker;
 @property (nonatomic, strong) NSArray *allTags;
 @property (nonatomic, strong) NSArray *preChosenTags;
+
+@property (nonatomic, strong) NSMutableArray<PARTag *> *allTagsCreated;
+@property (nonatomic, strong) NSMutableArray<PARTag *> *allTagsPreChosen;
 
 
 @end
@@ -28,13 +33,42 @@
 }
 
 - (void)initDummyData {
-    //Data for demo project
-    self.allTags = @[@"one fish", @"two fish", @"red fish", @"blue fish", @"the cat in the hat", @"Seuss"];
-    self.preChosenTags = @[@"in a box", @"with a fox", @"thing 1", @"thing 2"];
+    
+    NSArray *allTags = @[@"one fish", @"two fish", @"red fish", @"blue fish", @"the cat in the hat", @"Seuss", @"in a box", @"with a fox", @"thing 1", @"thing 2"];
+
+    _allTagsCreated = [[NSMutableArray alloc] initWithCapacity:allTags.count];
+    _allTagsPreChosen
+    = [NSMutableArray new];
+    
+    __weak ViewController *weakSelf = self;
+    
+    [allTags enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if (idx == 2){
+            PARTag *tag = [[PARTag alloc] init:[[NSUUID UUID] UUIDString] withText:obj andColorReference: [weakSelf useCustomColors]];
+            [_allTagsCreated addObject:tag];
+        } else {
+            PARTag *tag = [[PARTag alloc] init:[[NSUUID UUID] UUIDString] withText:obj]; // Add andColorReference: [weakSelf useCustomColors] for a custom COlor scheme for the tag
+            [_allTagsCreated addObject:tag];
+        }
+        
+        
+    }];
+    
+    [_allTagsPreChosen insertObject:_allTagsCreated[0] atIndex:0];
+    [_allTagsPreChosen insertObject:_allTagsCreated[2] atIndex:1];
+    [_allTagsPreChosen insertObject:_allTagsCreated[3] atIndex:2];
+    
+    self.allTags = _allTagsCreated;
+    self.preChosenTags = _allTagsPreChosen;
+    
 }
 
 - (void)addTagPickerToView {
-    self.tagPicker = [[PARTagPickerViewController alloc] init];
+    
+    [PARTagGlobalConfiguration sharedManager].cornerRadius = 2.0;
+    
+    self.tagPicker = [PARTagPickerViewController new];
     self.tagPicker.view.backgroundColor = [UIColor darkGrayColor];
     self.tagPicker.view.frame = CGRectMake(0, 20, CGRectGetWidth(self.view.bounds), COLLECTION_VIEW_HEIGHT); //78 is the fully expanded height.
     self.tagPicker.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -42,13 +76,13 @@
     self.tagPicker.allTags = self.allTags;
     
     //optionally allow new tags to be made
-    //self.tagPicker.allowsNewTags = YES;
+    self.tagPicker.allowsNewTags = YES;
     
     //optionally set some chosen tags
-    //self.tagPicker.chosenTags = [self.preChosenTags mutableCopy];
+    self.tagPicker.chosenTags = [self.preChosenTags mutableCopy];
     
     //optionally use custom colors using PARTagColorReference
-    //[self useCustomColors];
+    //self.tagPicker.tagColorRef = [self useCustomColors];
     
     //optionally set the font for all the cells
     //self.tagPicker.font = [UIFont fontWithName:@"Menlo-Regular" size:14];
@@ -69,7 +103,7 @@
     [self.view addSubview:self.tagPicker.view];
 }
 
-- (void)useCustomColors {
+- (PARTagColorReference *)useCustomColors {
     PARTagColorReference *myColors = [PARTagColorReference new];
     
     myColors.chosenTagBorderColor = [UIColor blueColor];
@@ -84,11 +118,11 @@
     myColors.highlightedTagBackgroundColor = [UIColor yellowColor];
     myColors.highlightedTagTextColor = [UIColor blackColor];
     
-    self.tagPicker.tagColorRef = myColors;
+    //self.tagPicker.tagColorRef = myColors;
+    return myColors;
 }
-
+    
 #pragma mark - PARTagPickerDelegate
-
 - (void)tagPicker:(PARTagPickerViewController *)tagPicker visibilityChangedToState:(PARTagPickerVisibilityState)state {
     //you can adjust this view controller's view to change with the tagPicker's size change, if needed.
     CGFloat newHeight = 0;
@@ -134,5 +168,12 @@
 - (IBAction)clearAll:(id)sender {
     [_tagPicker setChosenTags:[@[] mutableCopy]];
 }
+
+- (IBAction)setRandom:(id)sender {
+    /*self.allTags = _allTagsCreated;
+    self.preChosenTags = _allTagsPreChosen;*/
+    [_tagPicker setChosenTags: [self.preChosenTags mutableCopy]];
+}
+
 
 @end
