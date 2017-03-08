@@ -419,6 +419,10 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     }
     self.searchString = cell.tagTextField.text;
     [self filterTagsFromSearchString];
+    
+    if ([self.delegate respondsToSelector:@selector(searchStringDidChange:)]) {
+        [self.delegate searchStringDidChange:self.searchString];
+    }
 }
 
 - (void)editingInTextFieldCollectionViewCell:(PARTextFieldCollectionViewCell *)cell becameActive:(BOOL)active {

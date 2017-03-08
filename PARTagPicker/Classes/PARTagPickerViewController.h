@@ -37,6 +37,13 @@ typedef NS_ENUM(NSUInteger, PARTagPickerVisibilityState) {
  */
 - (void)chosenTagsWereUpdatedInTagPicker:(PARTagPickerViewController *)tagPicker;
 
+@optional
+/**
+ * Whenever the input of the textView is changed this method is fired.
+ * @param searchString which is typed into the textView.
+ */
+- (void)searchStringDidChange:(NSString *)searchString;
+
 @end
 
 /**

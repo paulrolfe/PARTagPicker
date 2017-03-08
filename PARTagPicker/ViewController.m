@@ -109,6 +109,11 @@
     //access chosen tags with tagPicker.chosenTags
 }
 
+
+- (void)searchStringDidChange:(NSString *)searchString {
+    //access chosen tags with searchString
+}
+
 #pragma mark - IBActions
 
 - (IBAction)hideAllTags:(id)sender {
