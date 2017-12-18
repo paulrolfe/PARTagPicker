@@ -31,6 +31,17 @@ Include `#import <PARTagPicker/PARTagPickerViewController.h>`.
 
 The basic setup is to create an instance of `PARTagPickerViewController`, add it's view, and then add the controller as a child view controller.
 
+A simple example of using the library in Swift 4
+
+    tagView = PARTagPickerViewController()
+    tagView?.view.backgroundColor! = UIColor.darkGray
+    tagView?.view.frame = CGRect(x: 0, y: 20, width: self.view.bounds.width, height: 220)
+    self.view.addSubview((tagView?.view)!)
+    tagView?.allowsNewTags = false
+    self.addChildViewController(tagView!)
+    tagView?.didMove(toParentViewController: self)
+    tagView?.visibilityState = PARTagPickerVisibilityState.topAndBottom
+
 The tags are passed in as `NSString` objects in an array. Anytime you change the `allTags` array, any existing `chosenTags` are updated to use references to the new strings if they contain a match in the updated array. Otherwise they continue to point to the old strings.
 
 ## Options
