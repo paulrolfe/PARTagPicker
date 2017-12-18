@@ -10,6 +10,11 @@
 
 @implementation PARTagColorReference
 
+- (instancetype)init {
+    self = [self initWithDefaultColors];
+    return self;
+}
+
 - (instancetype)initWithDefaultColors {
     self = [super init];
     if (self) {
