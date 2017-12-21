@@ -12,6 +12,7 @@
 @interface PARTagColorReference : NSObject
 
 - (instancetype)initWithDefaultColors;
+- (instancetype)init;
 
 @property (nonatomic, strong) UIColor *chosenTagBackgroundColor;
 @property (nonatomic, strong) UIColor *chosenTagTextColor;

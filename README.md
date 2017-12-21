@@ -33,6 +33,49 @@ The basic setup is to create an instance of `PARTagPickerViewController`, add it
 
 The tags are passed in as `NSString` objects in an array. Anytime you change the `allTags` array, any existing `chosenTags` are updated to use references to the new strings if they contain a match in the updated array. Otherwise they continue to point to the old strings.
 
+### Swift
+```swift
+override func viewDidLoad() {
+    super.viewDidLoad()
+    // Add the controller and view.
+    let tagController = PARTagPickerViewController()
+    addChildViewController(tagController)
+    tagController.view.frame = CGRect(x: 0, y: 64, width: view.bounds.width, height: COLLECTION_VIEW_HEIGHT)
+    view.addSubview(tagController.view)
+    tagController.didMove(toParentViewController: self)
+
+    // Customize appearance and data.
+    tagController.delegate = self
+    tagController.allTags = ["one fish","two fish"," red fish", "blue fish"]
+    tagController.chosenTags = ["with a fox", "in a box", "anywhere"]
+    tagController.allowsNewTags = true
+    tagController.view.backgroundColor = .orange
+    let colors = PARTagColorReference()
+    colors.highlightedTagTextColor = .white
+    colors.highlightedTagBackgroundColor = .blue
+    tagController.tagColorRef = colors
+}
+
+func tagPicker(_ tagPicker: PARTagPickerViewController!, visibilityChangedTo state: PARTagPickerVisibilityState) {
+    var newHeight: CGFloat = 0
+    if state == .topAndBottom {
+        newHeight = 2 * COLLECTION_VIEW_HEIGHT
+    } else if state == .topOnly {
+        newHeight = COLLECTION_VIEW_HEIGHT
+    }
+
+    var frame = tagPicker.view.frame
+    frame.size.height = newHeight
+
+    UIView.animate(withDuration: 0.3) {
+        tagPicker.view.frame = frame
+    }
+}
+```
+
+### Obj-C
+See example with `pod try PARTagPicker` or check the example view controller here: https://github.com/paulrolfe/PARTagPicker/blob/master/PARTagPicker/ViewController.m
+
 ## Options
 * You can customize colors using a PARTagColorReference object.
 * You can allow new tags with `allowsNewTags` boolean property on the controller.
@@ -48,6 +91,7 @@ The tags are passed in as `NSString` objects in an array. Anytime you change the
 This is still a work in progress. If you have suggestions or run into issues, please create an issue on git or tweet me [@ThePaulRolfe](http://twitter.com/thepaulrolfe).
 
 ## Updates
+* v1.4.0 - Swift example, expose cleaner PARTagColorReference init.
 * v1.1.0 - Added properties for `placeholderText` and `tapToEraseTags`.
 * v1.0.4 - Enabled for use in swift pods.
 * v1.0.2 - Including `.xib`s in the pod now. Oops!
