@@ -91,6 +91,7 @@ See example with `pod try PARTagPicker` or check the example view controller her
 This is still a work in progress. If you have suggestions or run into issues, please create an issue on git or tweet me [@ThePaulRolfe](http://twitter.com/thepaulrolfe).
 
 ## Updates
+* v1.4.0 - Swift example, expose cleaner PARTagColorReference init.
 * v1.1.0 - Added properties for `placeholderText` and `tapToEraseTags`.
 * v1.0.4 - Enabled for use in swift pods.
 * v1.0.2 - Including `.xib`s in the pod now. Oops!

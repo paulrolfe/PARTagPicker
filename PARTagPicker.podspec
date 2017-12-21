@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "PARTagPicker"
-  s.version      = "1.3.0"
+  s.version      = "1.4.0"
   s.summary      = "This pod provides a view controller for choosing and creating tags in the style of wordpress or tumblr."
   s.homepage     = "https://github.com/paulrolfe/PARTagPicker"
   s.screenshots  = "https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record1.gif", "https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record2.gif", "https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record3.gif", "https://s3.amazonaws.com/Paul.Image.Bucket/PRTagPicker/tag_record4.gif"
@@ -71,6 +71,7 @@ Pod::Spec.new do |s|
   This is still a work in progress. If you have suggestions or run into issues, please create an issue on git or tweet me [@ThePaulRolfe](http://twitter.com/thepaulrolfe).
 
   ## Updates
+  * v1.4.0 - Swift example, expose cleaner PARTagColorReference init.
   * v1.0.3 - Making safe from some unexpected nil values.
   * v1.0.2 - Including `.xib`s in the pod now. Oops!
   * v1.0.0 - Added documentation and fixed bug with deselecting chosenTags. Added ability to use custom fonts in the tag cells.
