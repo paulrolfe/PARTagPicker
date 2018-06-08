@@ -92,6 +92,14 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     self.availableTags = [self.allTags mutableCopy];
     [self.availableTags removeObjectsInArray: chosenTags];
     [self filterTagsFromSearchString];
+    
+    if (chosenTags.count > 0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.6 animations:^{
+                [self.chosenTagCollectionView setContentOffset:CGPointMake(self.chosenTagCollectionView.contentSize.width-[UIScreen.mainScreen bounds].size.width, 0) animated:YES];
+            }];
+        });
+    }
 }
 
 - (void)transferChosenTagsWithNewAllTags {
