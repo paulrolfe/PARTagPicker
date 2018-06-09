@@ -128,6 +128,11 @@ typedef NS_ENUM(NSUInteger, PARTagPickerVisibilityState) {
 - (void)becomeFirstResponder;
 
 /**
+ *  Hides the keyboard when the cursor is in the cellTextField.
+ */
+- (BOOL)resignFirstResponder;
+
+/**
  *  Forces the collectionviews to reload. Intended use is primarily if the textfield colors are changed. 
  
  WARNING: Removes any text in the textfield cell.
