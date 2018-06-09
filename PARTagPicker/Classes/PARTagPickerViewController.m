@@ -71,6 +71,13 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     }
 }
 
+- (BOOL)resignFirstResponder {
+    if (self.textfieldEnabled) {
+        return [self.cellTextField resignFirstResponder];
+    }
+    return [super resignFirstResponder];
+}
+
 - (void)reloadCollectionViews {
     [self.availableTagCollectionView reloadData];
     [self.chosenTagCollectionView reloadData];
