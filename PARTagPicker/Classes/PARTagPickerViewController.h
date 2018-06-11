@@ -108,6 +108,11 @@ typedef NS_ENUM(NSUInteger, PARTagPickerVisibilityState) {
 @property (nonatomic) BOOL tapToEraseTags;
 
 /**
+  *  Default to NO. If set to NO sorts the availableTags discending, if set to YES sorts the availableTags ascending.
+ */
+@property (nonatomic) BOOL sortAscending;
+
+/**
  *  Defaults to YES. If set to NO, the cells will not be non interactive. Scrolling will work, but tapping will have no effect and the textfield won't appear.
  */
 @property (nonatomic) BOOL textfieldEnabled;
