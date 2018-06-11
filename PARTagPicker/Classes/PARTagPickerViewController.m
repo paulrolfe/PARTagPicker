@@ -42,6 +42,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     self = [super initWithNibName:nibNameOrNil bundle:assetBundle];
     if (self) {
         self.tapToEraseTags = YES;
+        self.sortAscending = NO;
         self.textfieldEnabled = YES;
         self.shouldAutomaticallyChangeVisibilityState = YES;
         self.placeholderText = @"Add a tag";
@@ -71,6 +72,13 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     }
 }
 
+- (BOOL)resignFirstResponder {
+    if (self.textfieldEnabled) {
+        return [self.cellTextField resignFirstResponder];
+    }
+    return [super resignFirstResponder];
+}
+
 - (void)reloadCollectionViews {
     [self.availableTagCollectionView reloadData];
     [self.chosenTagCollectionView reloadData];
@@ -92,6 +100,14 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     self.availableTags = [self.allTags mutableCopy];
     [self.availableTags removeObjectsInArray: chosenTags];
     [self filterTagsFromSearchString];
+    
+    if (chosenTags.count > 0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.6 animations:^{
+                [self.chosenTagCollectionView setContentOffset:CGPointMake(self.chosenTagCollectionView.contentSize.width-[UIScreen.mainScreen bounds].size.width, 0) animated:YES];
+            }];
+        });
+    }
 }
 
 - (void)transferChosenTagsWithNewAllTags {
@@ -146,7 +162,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 #pragma mark - Tag Filtering
 
 - (void)filterTagsFromSearchString {
-    NSSortDescriptor * sortDesc = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:NO];
+    NSSortDescriptor * sortDesc = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:self.sortAscending];
     [self.availableTags sortUsingDescriptors:@[sortDesc]];
     
     if (!self.searchString || [self.searchString isEqualToString:@""]){

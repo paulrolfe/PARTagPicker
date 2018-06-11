@@ -108,6 +108,11 @@ typedef NS_ENUM(NSUInteger, PARTagPickerVisibilityState) {
 @property (nonatomic) BOOL tapToEraseTags;
 
 /**
+  *  Default to NO. If set to NO sorts the availableTags discending, if set to YES sorts the availableTags ascending.
+ */
+@property (nonatomic) BOOL sortAscending;
+
+/**
  *  Defaults to YES. If set to NO, the cells will not be non interactive. Scrolling will work, but tapping will have no effect and the textfield won't appear.
  */
 @property (nonatomic) BOOL textfieldEnabled;
@@ -126,6 +131,11 @@ typedef NS_ENUM(NSUInteger, PARTagPickerVisibilityState) {
  *  Opens the visibility state to TopAndBottom and puts the cursor as active in the textfield cell.
  */
 - (void)becomeFirstResponder;
+
+/**
+ *  Hides the keyboard when the cursor is in the cellTextField.
+ */
+- (BOOL)resignFirstResponder;
 
 /**
  *  Forces the collectionviews to reload. Intended use is primarily if the textfield colors are changed. 
