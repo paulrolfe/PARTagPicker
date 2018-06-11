@@ -42,6 +42,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
     self = [super initWithNibName:nibNameOrNil bundle:assetBundle];
     if (self) {
         self.tapToEraseTags = YES;
+        self.sortAscending = NO;
         self.textfieldEnabled = YES;
         self.shouldAutomaticallyChangeVisibilityState = YES;
         self.placeholderText = @"Add a tag";
@@ -161,7 +162,7 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
 #pragma mark - Tag Filtering
 
 - (void)filterTagsFromSearchString {
-    NSSortDescriptor * sortDesc = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:NO];
+    NSSortDescriptor * sortDesc = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:self.sortAscending];
     [self.availableTags sortUsingDescriptors:@[sortDesc]];
     
     if (!self.searchString || [self.searchString isEqualToString:@""]){
