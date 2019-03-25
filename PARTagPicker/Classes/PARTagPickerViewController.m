@@ -331,6 +331,9 @@ static NSString * const PARTextFieldCollectionViewCellIdentifier = @"PARTextFiel
         }
         sizingCell.tagLabel.text = tag;
         sizingCell.tagLabel.font = self.font;
+        [sizingCell setNeedsLayout];
+        [sizingCell layoutIfNeeded];
+
         CGSize size = [sizingCell systemLayoutSizeFittingSize:CGSizeMake(collectionView.contentSize.width, TAGCOLLECTION_CELL_HEIGHT) withHorizontalFittingPriority:UILayoutPriorityDefaultLow verticalFittingPriority:UILayoutPriorityDefaultHigh];
         return size;
     }
