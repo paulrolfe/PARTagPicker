@@ -39,10 +39,10 @@ override func viewDidLoad() {
     super.viewDidLoad()
     // Add the controller and view.
     let tagController = PARTagPickerViewController()
-    addChildViewController(tagController)
+    addChild(tagController)
     tagController.view.frame = CGRect(x: 0, y: 64, width: view.bounds.width, height: COLLECTION_VIEW_HEIGHT)
     view.addSubview(tagController.view)
-    tagController.didMove(toParentViewController: self)
+    tagController.didMove(toParent: self)
 
     // Customize appearance and data.
     tagController.delegate = self
@@ -50,7 +50,7 @@ override func viewDidLoad() {
     tagController.chosenTags = ["with a fox", "in a box", "anywhere"]
     tagController.allowsNewTags = true
     tagController.view.backgroundColor = .orange
-    let colors = PARTagColorReference()
+    let colors = PARTagColorReference()!
     colors.highlightedTagTextColor = .white
     colors.highlightedTagBackgroundColor = .blue
     tagController.tagColorRef = colors
