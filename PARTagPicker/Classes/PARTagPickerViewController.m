@@ -14,7 +14,7 @@
 #import "PARTagColorReference.h"
 #import "UIView+NibInitable.h"
 
-CGFloat const COLLECTION_VIEW_HEIGHT = 39.0;
+CGFloat const COLLECTION_VIEW_HEIGHT = 44.0;
 static CGFloat const TAGCOLLECTION_CELL_HEIGHT = 27.0;
 static CGFloat const TAG_TEXTFIELD_MAXWIDTH = 150;
 static NSString * const PARTagCollectionViewCellIdentifier = @"PARTagCollectionViewCellIdentifier";
